@@ -103,7 +103,7 @@
     \end{enumerate}
 \end{frame}
 
-
+\subsection{Основные определения}
 
 
 
@@ -129,8 +129,52 @@
 \end{frame}
 
 \subsection{О вычислении асимптотической мощности энергетического теста}
+
+
+\begin{frame}{Обозначения}
+	\begin{itemize}
+		\item
+		Пусть $f(x)$ обозначает плотность $F_1$
+		\item 
+		Пусть $g(x)$ монотонная дважды непрерывно дифференцируемая функция т.ч. $\mathbb{E}[g^2(\xi)] < \infty$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Обозначения}
+	
+	\begin{align*}
+		J_1 &= \int_{\mathbb{R}^2} g(x-y)f(x)f(y)dxdy = \mathbb{E}[g(\xi - \eta)]\\
+		J_2 &= \int_{\mathbb{R}^2} g^2(x-y)f(x)f(y)dxdy = \mathbb{E}[g^2(\xi - \eta)] \\
+		J_3 &= \int_{\mathbb{R}^3} g(x-y)g(y-z)f(x)f(y)f(z)dxdydz = \\
+		    &=\mathbb{E}[g(\xi - \eta)g(\eta - \gamma)] \\[0.2in]
+		J^*_1(h_1) &= \frac{1}{2}h^2_1 \int_{\mathbb{R}^2} g''(x-y)f(x)f(y)dxdy \\
+		J^*_2(h_2) &= \frac{1}{2}h^2_2 \int_{\mathbb{R}^2} (y^2-\frac{(x-y)^2}{2})g''(x-y)f(x)f(y)dxdy \\
+	\end{align*}
+	
+\end{frame}
+
+\begin{frame}{Обозначения}
+	
+	\begin{align*}
+		&b^2_1 = | J^*_1(h_1) |\\
+		&b^2_2 = | J^*_2(h_2) |\\
+		&b = \sqrt{b^2_1 + b^2_2} \\
+		&a^2 = \sqrt{ J_2 + J^2_1 - 2J_3}
+	\end{align*}
+	
+\end{frame}
+
 \begin{frame}{О вычислении асимптотической мощности энергетического теста}
-	тут будет теорема
+	\begin{block}{Теорема, Мелас 2024}
+		Пусть функция $g(x)$ удовлетворяет требованиям указанным выше.\\
+		Пусть $\exists \psi: g(x) = \psi(x^2), \psi(0) = 0 $.\\
+		Тогда:\\
+		Асимптотическая мощность теста $n\Phi_{nn}$ с уровнем значимости $\alpha$ равна
+		\[ 
+		1 - F(z_{1-\frac{\alpha}{2}} - \frac{b}{a}) + F(-z_{1-\frac{\alpha}{2}} - \frac{b}{a})
+		\]
+		где $F(t)$ - функция стандартного нормального распределения, a $z_{1-\frac{\alpha}{2}}$ его $1-\frac{\alpha}{2}$ квантиль.
+	\end{block}
 \end{frame}
 
 
@@ -203,46 +247,165 @@
 
 \section{Моделирование}
 
+
 \begin{frame}{Вычисление критического значения}
+	\begin{enumerate}
+		\item Генерируем выборки $X^{(k)}$ и $Y^{(k)}$ размера $n$, из $F_1$, где $k \in \overline{1,\ldots, M}$.
+		\item Вычисляем $T(X^{(k)}, Y^{(k)})$ для всех $k \in \overline{1,\ldots, M}$
+		\item Получаем выборку из распределения $T(X,Y)$ размера $M$, по ней строим эмпирическое распределение $\hat{T}(X,Y)$.
+		\item В качестве $c_{\alpha}$ берём $1 - \alpha$ квантиль $\hat{T}(X,Y)$.
+	\end{enumerate}
 \end{frame}
+
 
 \begin{frame}{Вычисление эмпирической мощности}
+	\begin{enumerate}
+		\item Генерируем $X^{(i)}, Y^{(i)}$ -- выборки размера $n$ из $F_1$ и $F_2$ соответственно, для $i \in \overline{1,\ldots, N}$.
+		\item Считаем количество отвержений $H_0$ как $cnt =  \#\{ (X^{(i)},Y^{(i)}) \ | \ T(X^{(i)}, Y^{(i)}) \geqslant c_{\alpha}, \ i \in \overline{1,\ldots, N} \}$.
+		\item В качестве эмпирической мощности берём $ \frac{cnt}{N}$.
+	\end{enumerate}
 \end{frame}
 
-
+\begin{frame}{Параметры}
+	$N = 5000$\\
+	$M = 5000$\\
+	$\alpha = 0.05$\\
+\end{frame}
 
 \section{Результаты}
 
 \subsection*{ET Нормальное отличие по масштабу}
-
-\begin{frame}
-табличка
+\begin{frame}{Стандартное нормальное распределение\\ Отличие по сдвигу}
+\begin{table}[!h]
+	\centering
+	\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ($h_2=0$)}
+	\hspace*{-1.0cm}\begin{tabular}
+		{lrrrrrrrrrr}
+		\toprule
+		& h1=1.0 & h1=2.0 & h1=3.0 & h1=4.0 & h1=5.0 & h1=6.0 \\
+		\midrule
+		EP (n=100) & 0.095 & 0.264 & 0.514 & 0.763 & 0.912 & 0.982 \\
+		EP (n=400) & 0.093 & 0.259 & 0.506 & 0.761 & 0.915 & 0.983 \\
+		EP (n=900) & 0.099 & 0.255 & 0.509 & 0.754 & 0.904 & 0.978\\
+		EP (n=1600) & 0.086 & 0.245 & 0.497 & 0.751 & 0.919 & 0.983\\
+		EP (n=2000) & 0.103 & 0.264 & 0.519 & 0.771 & 0.915 & 0.981\\
+		EP (n=3000) & 0.111 & 0.275 & 0.529 & 0.767 & 0.917 & 0.983\\
+		\addlinespace
+		AP & 0.100 & 0.257 & 0.499 & 0.742 & 0.904 & 0.975 \\
+		\bottomrule
+	\end{tabular}
+	\label{tbl:ap_normal_h1_diff}
+\end{table}
 \end{frame}
 
 
-\subsection*{ET Коши отличие по сдвигу}
-\begin{frame}
-	табличка
+\subsection*{ET Коши отличие по масштабу}
+\begin{frame}{Стандартное распределение Коши \\ Отличие по масштабу}
+	\begin{table}[!h]
+		\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ($h_1=0$)}
+		\centering
+		\hspace*{-1.0cm}\begin{tabular}
+			{lrrrrrrrrrr}
+			\toprule
+			& h2=1.0 & h2=2.0 & h2=3.0 & h2=4.0 & h2=5.0 & h2=6.0\\
+			\midrule
+			EP (n=100) & 0.060 & 0.085 & 0.132 & 0.190 & 0.269 & 0.329 \\
+			EP (n=400) & 0.063 & 0.109 & 0.167 & 0.257 & 0.370 & 0.509 \\
+			EP (n=900) & 0.067 & 0.107 & 0.190 & 0.292 & 0.421 & 0.552 \\
+			EP (n=1600) & 0.058 & 0.110 & 0.179 & 0.295 & 0.431 & 0.586 \\
+			EP (n=2000) & 0.063 & 0.112 & 0.187 & 0.310 & 0.445 & 0.586 \\
+			EP (n=3000) & 0.064 & 0.114 & 0.197 & 0.309 & 0.470 & 0.617 \\
+			\addlinespace
+			AP & 0.066 & 0.115 & 0.201 & 0.319 & 0.461 & 0.608 \\
+			\bottomrule
+		\end{tabular}
+		\label{tbl:ap_cauchy_h2_diff}
+	\end{table}
 \end{frame}
 
-\subsection*{Все Нормальное сдвиг}
-\begin{frame}
-	график
+
+
+\begin{frame}{Стандартное нормальное распределение \\ Отличие по сдвигу}
+	\includegraphics[width=0.9\textwidth]{pics/NORMAL_h2_n_EP (n_500).png}
 \end{frame}
 
-\subsection*{Все Коши масштаб}
-\begin{frame}
-	график
+\begin{frame}{Стандартное нормальное распределение \\ Отличие по масштабу}
+	\includegraphics[width=0.9\textwidth]{pics/NORMAL_h1_n_EP (n_500).png}
 \end{frame}
 
-\subsection*{Нормальное два ET}
-\begin{frame}
-	табличка
+\begin{frame}{Стандартное распределение Коши \\ Отличие по сдвигу}
+	\includegraphics[width=0.9\textwidth]{pics/CAUCHY_h2_n_EP (n_500).png}
 \end{frame}
 
-\begin{frame}
-	график
+\begin{frame}{Стандартное распределение Коши \\ Отличие по масштабу}
+	\includegraphics[width=0.9\textwidth]{pics/CAUCHY_h1_n_EP (n_500).png}
 \end{frame}
+
+
+\begin{frame}{Два варианта ET}
+	\begin{itemize}
+	\item
+	Далее, в таблицах, $\text{ET}_1$ обозначает энергетический 
+	тест с $g_1(x) = \ln(1+x^2)$, а $\text{ET}_2$ обозначает энергетический тест с $g_2(x) = |x|$
+	\item
+	Формула "не работает" для $g_2(x)$.
+	\item
+	Но если по ней посчитать, то AP$=0.05$
+	\end{itemize}
+	
+\end{frame}
+
+
+\begin{frame}{Два варианта ET}
+	% Table for NORMAL_h1
+	\begin{table}[!h]
+		\centering
+		\caption{Стандартное нормальное распределение (h1=0)}
+		\hspace*{-0.6cm}\begin{tabular}{l c c c c c c c c c c} 
+			\toprule
+			test & sample size & h2=1.0 & h2=1.5 & h2=2.0 & h2=2.5 & h2=3.0\\ 
+			\midrule
+			\multirow{3}{*}{$\text{ET}_1$} 
+			& n=100 & 0.05 & 0.07 & 0.09 & 0.13 & 0.18\\ 
+			& n=400 & 0.06 & 0.09 & 0.13 & 0.2 & 0.27  \\ 
+			& n=900 & 0.07 & 0.1 & 0.16 & 0.21 & 0.34 \\ 
+			\addlinespace
+			\addlinespace
+			\multirow{3}{*}{$\text{ET}_2$} 
+			& n=100 & 0.05 & 0.07 & 0.08 & 0.11 & 0.15 \\ 
+			& n=400 & 0.05 & 0.07 & 0.09 & 0.14 & 0.2   \\ 
+			& n=900 & 0.06 & 0.08 & 0.11 & 0.16 & 0.23 \\ 
+			\bottomrule
+		\end{tabular}
+		\label{tbl:et_comp_normal_h2}
+	\end{table}
+\end{frame}
+\begin{frame}{Два варианта ET}
+	%aboba
+	% Table for CAUCHY_h2
+	\begin{table}[!h]
+		\centering
+		\caption{Стандартное распределение Коши (h2=0)}
+		\hspace*{-0.6cm}\begin{tabular}{l c c c c c c c c c c} 
+			\toprule
+			test & sample size & h1=1.0 & h1=2.0 & h1=3.0 & h1=4.0 & h1=5.0 \\ 
+			\midrule
+			\multirow{3}{*}{$\text{ET}_1$} 
+			& n=100 & 0.08 & 0.11 & 0.21 & 0.35 & 0.52 \\ 
+			& n=400 & 0.06 & 0.11 & 0.21 & 0.34 & 0.52 \\ 
+			& n=900 & 0.07 & 0.12 & 0.22 & 0.36 & 0.53 \\ 
+			\addlinespace
+			\addlinespace
+			\multirow{3}{*}{$\text{ET}_2$} 
+			& n=100 & 0.06 & 0.07 & 0.07 & 0.07 & 0.08  \\ 
+			& n=400 & 0.05 & 0.05 & 0.05 & 0.06 & 0.06 \\ 
+			& n=900 & 0.04 & 0.05 & 0.05 & 0.05 & 0.06 \\ 
+			\bottomrule
+		\end{tabular}
+		\label{tbl:et_comp_cauchy_h1}
+	\end{table}
+\end{frame}
+
 
 
 \section{Выводы}
