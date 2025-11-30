@@ -1,0 +1,284 @@
+\documentclass[12pt]{beamer}
+
+
+\mode<presentation>
+{
+	\usetheme{Warsaw}
+	% or ...
+	
+	\setbeamercovered{transparent}
+	% or whatever (possibly just delete it)
+}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+
+\setbeamertemplate{headline}{}
+\setbeamertemplate{footline}{}
+
+\title[Об асимптотической мощности энергетического критерия]{Исследование асимптотической мощности энергетического критерия для проверки гипотезы о равенстве двух распределений в случае двух близких альтернатив}
+\author{Сивков Вячеслав}
+\institute{Санкт-Петербургский государственный университет}
+\date{2025}
+
+\begin{document}
+
+\begin{frame}
+    \titlepage
+\end{frame}
+
+\begin{frame}{Содержание}
+    \tableofcontents
+\end{frame}
+
+\section{Введение}
+
+\subsection{Постановка задачи}
+
+\begin{frame}{Постановка задачи}
+    \begin{block}{Основная гипотеза}
+        Проверка гипотезы о равенстве двух распределений:
+        \[
+        H_0: F_1 = F_2 \quad \text{против} \quad H_1: F_1 \neq F_2
+        \]
+    \end{block}
+    
+    \begin{block}{Выборки}
+        \begin{itemize}
+            \item $X = (X_1, \ldots, X_n)$ из $F_1$
+            \item $Y = (Y_1, \ldots, Y_m)$ из $F_2$
+            \item Выборки независимые
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Альтернативная гипотеза}
+    \begin{block}{Параметризация отличия}
+        При $n = m$:
+        \begin{align*}
+        F_1(x) &= F(x) \\
+        F_2(x) &= F\left(x(1 + \frac{h_2}{\sqrt{n}}) + \frac{h_1}{\sqrt{n}}\right)
+        \end{align*}
+    \end{block}
+    
+    \begin{itemize}
+        \item $h_1$ - параметр отличия по сдвигу
+        \item $h_2$ - параметр отличия по масштабу
+        \item $F(x)$ - базовое распределение
+    \end{itemize}
+\end{frame}
+
+
+\subsection{Известные результаты}
+
+
+\subsection{Цели исследования}
+\begin{frame}{Цели исследования}
+    \begin{enumerate}
+        \item Изучение скорости сходимости эмпирических мощностей энергетического теста к асимптотической
+        \item Сравнение мощностей пяти тестов:
+        \begin{itemize}
+            \item Энергетический тест (ET)
+            \item Тест Андерсона-Дарлинга (AD)
+            \item Тест Колмогорова-Смирнова (KS)
+            \item Тест Крамера-фон Мизеса (CM)
+            \item Тест Вилкоксона-Манна-Уитни (WMW)
+        \end{itemize}
+    	\item Сравнение мощностей различных версий энергетического теста
+    \end{enumerate}
+\end{frame}
+
+
+
+
+
+\section{Методы проверки гипотез}
+
+\subsection{ET}
+\begin{frame}{Энергетический тест (ET)}
+    \begin{block}{Статистика}
+        \[
+        \Phi_{nm} = \Phi_{AB} - \Phi_A - \Phi_B
+        \]
+        \begin{align*}
+        \Phi_A &= \frac{1}{n^2} \sum_{1 \leq i \leq j \leq n} g(|X_i - X_j|) \\
+        \Phi_B &= \frac{1}{m^2} \sum_{1 \leq i \leq j \leq m} g(|Y_i - Y_j|) \\
+        \Phi_{AB} &= \frac{1}{nm} \sum_{i=1}^n \sum_{j=1}^m g(|X_i - Y_j|)
+        \end{align*}
+    \end{block}
+    
+    \begin{itemize}
+        \item $g(x)$ - монотонная и непрерывная функция
+        \item Используется статистика $n\Phi_{nn}$
+    \end{itemize}
+\end{frame}
+
+\subsection{О вычислении асимптотической мощности энергетического теста}
+\begin{frame}{О вычислении асимптотической мощности энергетического теста}
+	тут будет теорема
+\end{frame}
+
+
+\subsection{AD}
+\begin{frame}{Тест Андерсона-Дарлинга (AD)}
+    \begin{block}{Статистика для k выборок}
+        \[
+        A_{kN}^2 = \frac{1}{N} \sum_{i=1}^k \frac{1}{n_i} \sum_{j=1}^{N-1} \frac{(NM_{ij} - jn_i)^2}{j(N-j)}
+        \]
+    \end{block}
+    
+    \begin{itemize}
+        \item $N = n_1 + \ldots + n_k$ - общий объем выборок
+        \item $M_{ij}$ - количество элементов i-й выборки $\leq Z_{(j)}$
+        \item $Z_{(1)}, \ldots, Z_{(N)}$ - вариационный ряд
+    \end{itemize}
+\end{frame}
+
+\subsection{KS}
+\begin{frame}{Тест Колмогорова-Смирнова (KS)}
+    \begin{block}{Статистика}
+        \[
+        KS = \max_{1 \leq i \leq N} |\hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)})|
+        \]
+    \end{block}
+    
+    \begin{itemize}
+        \item $\hat{F}$, $\hat{G}$ - эмпирические функции распределения
+        \item $Z_{(1)}, \ldots, Z_{(N)}$ - объединенный вариационный ряд
+        \item $N = n + m$
+    \end{itemize}
+\end{frame}
+
+
+\subsection{CM}
+\begin{frame}{Тест Крамера-фон Мизеса (CM)}
+    \begin{block}{Статистика}
+        \[
+        CM = \frac{mn}{N^2} \sum_{i=1}^N (\hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)}))^2
+        \]
+    \end{block}
+    
+    \begin{itemize}
+        \item Основан на интеграле квадрата разности эмпирических функций
+        \item Более чувствителен к различиям в хвостах распределений
+    \end{itemize}
+\end{frame}
+
+
+\subsection{WMW}
+\begin{frame}{Тест Вилкоксона-Манна-Уитни (WMW)}
+    \begin{block}{Статистика}
+        \[
+        U_{nm} = \sum_{i=1}^n \sum_{j=1}^m \chi(X_i, Y_j)
+        \]
+        \[
+        \chi(X_i, Y_j) = 
+        \begin{cases}
+        1, & X_i \geq Y_j \\
+        0, & X_i < Y_j
+        \end{cases}
+        \]
+    \end{block}
+    
+    \begin{itemize}
+        \item Непараметрический тест
+        \item Чувствителен к сдвигу распределений
+    \end{itemize}
+\end{frame}
+
+\section{Моделирование}
+
+\begin{frame}{Вычисление критического значения}
+\end{frame}
+
+\begin{frame}{Вычисление эмпирической мощности}
+\end{frame}
+
+
+
+\section{Результаты}
+
+\subsection{ET Нормальное отличие по масштабу}
+\subsection{ET Коши отличие по сдвигу}
+\subsection{Все Нормальное сдвиг}
+\subsection{Все Коши масштаб}
+\subsection{Нормальное два ET}
+
+
+
+\section{Выводы}
+
+\begin{frame}{Основные результаты}
+    \begin{enumerate}
+        \item \textbf{Сходимость:} Эмпирические мощности быстро сходятся к асимптотическим для нормального распределения
+        
+        \item \textbf{Мощность тестов зависит от типа отличия:}
+        \begin{itemize}
+            \item Отличие по сдвигу: WMW наиболее мощный
+            \item Отличие по масштабу: ET наиболее мощный
+        \end{itemize}
+        
+        \item \textbf{Влияние распределения:}
+        \begin{itemize}
+            \item Для распределения Коши ET показывает лучшие результаты при отличиях по масштабу
+            \item WMW не чувствителен к отличиям по масштабу
+        \end{itemize}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Заключение}
+    \begin{block}{Выполненная работа}
+        \begin{itemize}
+            \item Проведено сравнение пяти статистических тестов
+            \item Изучена сходимость эмпирических мощностей
+            \item Проанализировано влияние типа отличия распределений
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{Практическая значимость}
+        \begin{itemize}
+            \item Рекомендации по выбору теста в зависимости от типа альтернативы
+            \item Сравнение различных вариантов энергетического теста
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Литература}
+    \begin{thebibliography}{9}
+    \bibitem{melas2024}
+    В. Б. Мелас, Д. И. Сальников.
+    \textit{Об асимптотической мощности «энергетического» теста для проверки гипотез о равенстве двух распределений}.
+    Вестник СПбГУ. Математика. Механика. Астрономия, 2024.
+    
+    \bibitem{AD_article}
+    F.-W. Scholz, M. A. Stephens.
+    \textit{K-Sample Anderson–Darling Tests}.
+    Journal of the American Statistical Association, 1987.
+    
+    \bibitem{WMW_article}
+    H. B. Mann, D. R. Whitney.
+    \textit{On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other}.
+    Annals of Mathematical Statistics, 1947.
+    
+    \bibitem{KS_CM_article}
+    H. Buning.
+    \textit{Kolmogorov-Smirnov and Cramér-von Mises Type Two-Sample Tests with Various Weight Functions}.
+    Communications in Statistics - Simulation and Computation, 2001.
+    \end{thebibliography}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \Huge{Спасибо за внимание!}
+    
+    \vspace{1cm}
+    \large{Вопросы?}
+\end{frame}
+
+\end{document}
