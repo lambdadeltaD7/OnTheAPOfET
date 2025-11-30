@@ -19,6 +19,7 @@
 \usepackage{graphicx}
 \usepackage{multirow}
 
+
 \setbeamertemplate{headline}{}
 %\setbeamertemplate{footline}{}
 \setbeamertemplate{footline}{
@@ -61,6 +62,8 @@
         \]
     \end{block}
     
+    \pause
+    
     \begin{block}{Выборки}
         \begin{itemize}
             \item $X = (X_1, \ldots, X_n)$ из $F_1$
@@ -81,7 +84,9 @@
     
     \begin{itemize}
         \item $h_1$ - параметр отличия по сдвигу
+        \pause
         \item $h_2$ - параметр отличия по масштабу
+        \pause
         \item $F(x)$ - базовое распределение
     \end{itemize}
 \end{frame}
@@ -91,6 +96,7 @@
 \begin{frame}{Цели исследования}
     \begin{enumerate}
         \item Изучение скорости сходимости эмпирических мощностей энергетического теста к асимптотической
+        \pause
         \item Сравнение мощностей пяти тестов:
         \begin{itemize}
             \item Энергетический тест (ET)
@@ -99,6 +105,7 @@
             \item Тест Крамера-фон Мизеса (CM)
             \item Тест Вилкоксона-Манна-Уитни (WMW)
         \end{itemize}
+    	\pause
     	\item Сравнение мощностей различных версий энергетического теста
     \end{enumerate}
 \end{frame}
@@ -110,9 +117,13 @@
 		Пусть $c \in \mathbb{R}$. Будем говорить, что тест $T$ с критическим значением $c$ отвергает $H_0$ при реализациях равных $\hat{X}$ и $\hat{Y}$, если $T(\hat{X},\hat{Y}) \geqslant c$.
 	\end{block}
 	
+	\pause
+	
 	\begin{block}{Уровень значимости}
 		Будем говорить, что тест $T$ с критическим значением $c$ имеет уровень значимости $\alpha$,\\ если $P($отвергнуть $H_0 | H_0$ верна$) \leqslant \alpha$.
 	\end{block}
+	
+	\pause
 	
 	\begin{block}{Мощность}
 		Число $P($отвергнуть $H_0 | H_1$ верна$)$ будем называть мощностью теста.
@@ -139,6 +150,7 @@
     
     \begin{itemize}
         \item $g(x)$ - монотонная и непрерывная функция
+        \pause
         \item Используется статистика $n\Phi_{nn}$
     \end{itemize}
 \end{frame}
@@ -150,6 +162,9 @@
 	\begin{itemize}
 		\item
 		Пусть $f(x)$ обозначает плотность $F_1$
+		
+		\pause
+		
 		\item 
 		Пусть $g(x)$ монотонная (п.в.) дважды непрерывно дифференцируемая функция т.ч. $\mathbb{E}[g^2(\xi)] < \infty$
 	\end{itemize}
@@ -159,10 +174,14 @@
 	
 	\begin{align*}
 		J_1 &= \int_{\mathbb{R}^2} g(x-y)f(x)f(y)dxdy = \mathbb{E}[g(\xi - \eta)]\\
+		\pause
 		J_2 &= \int_{\mathbb{R}^2} g^2(x-y)f(x)f(y)dxdy = \mathbb{E}[g^2(\xi - \eta)] \\
+		\pause
 		J_3 &= \int_{\mathbb{R}^3} g(x-y)g(y-z)f(x)f(y)f(z)dxdydz = \\
 		    &=\mathbb{E}[g(\xi - \eta)g(\eta - \gamma)] \\[0.2in]
+		    \pause
 		J^*_1(h_1) &= \frac{1}{2}h^2_1 \int_{\mathbb{R}^2} g''(x-y)f(x)f(y)dxdy \\
+		\pause
 		J^*_2(h_2) &= \frac{1}{2}h^2_2 \int_{\mathbb{R}^2} (y^2-\frac{(x-y)^2}{2})g''(x-y)f(x)f(y)dxdy \\
 	\end{align*}
 	
@@ -172,8 +191,11 @@
 	
 	\begin{align*}
 		&b^2_1 = | J^*_1(h_1) |\\
+		\pause
 		&b^2_2 = | J^*_2(h_2) |\\
+		\pause
 		&b = \sqrt{b^2_1 + b^2_2} \\
+		\pause
 		&a^2 = \sqrt{ J_2 + J^2_1 - 2J_3}
 	\end{align*}
 	
@@ -182,12 +204,15 @@
 \begin{frame}{О вычислении асимптотической мощности энергетического теста}
 	\begin{block}{Теорема, Мелас 2024}
 		Пусть функция $g(x)$ удовлетворяет требованиям указанным выше.\\
+		\pause
 		Пусть $\exists \psi: g(x) = \psi(x^2), \psi(0) = 0 $.\\
+		\pause
 		Тогда:\\
 		Асимптотическая мощность теста $n\Phi_{nn}$ с уровнем значимости $\alpha$ равна
 		\[ 
 		1 - F(z_{1-\frac{\alpha}{2}} - \frac{b}{a}) + F(-z_{1-\frac{\alpha}{2}} - \frac{b}{a})
 		\]
+		\pause
 		где $F(t)$ - функция стандартного нормального распределения, a $z_{1-\frac{\alpha}{2}}$ его $1-\frac{\alpha}{2}$ квантиль.
 	\end{block}
 \end{frame}
@@ -261,8 +286,11 @@
 \begin{frame}{Вычисление критического значения}
 	\begin{enumerate}
 		\item Генерируем выборки $X^{(k)}$ и $Y^{(k)}$ размера $n$, из $F_1$, где $k \in \overline{1,\ldots, M}$.
+		\pause
 		\item Вычисляем $T(X^{(k)}, Y^{(k)})$ для всех $k \in \overline{1,\ldots, M}$
+		\pause
 		\item Получаем выборку из распределения $T(X,Y)$ размера $M$, по ней строим эмпирическое распределение $\hat{T}(X,Y)$.
+		\pause
 		\item В качестве $c_{\alpha}$ берём $1 - \alpha$ квантиль $\hat{T}(X,Y)$.
 	\end{enumerate}
 \end{frame}
@@ -271,7 +299,9 @@
 \begin{frame}{Вычисление эмпирической мощности}
 	\begin{enumerate}
 		\item Генерируем $X^{(i)}, Y^{(i)}$ -- выборки размера $n$ из $F_1$ и $F_2$ соответственно, для $i \in \overline{1,\ldots, N}$.
+		\pause
 		\item Считаем количество отвержений $H_0$ как $cnt =  \#\{ (X^{(i)},Y^{(i)}) \ | \ T(X^{(i)}, Y^{(i)}) \geqslant c_{\alpha}, \ i \in \overline{1,\ldots, N} \}$.
+		\pause
 		\item В качестве эмпирической мощности берём $ \frac{cnt}{N}$.
 	\end{enumerate}
 \end{frame}
@@ -279,7 +309,9 @@
 \begin{frame}{Параметры}
 	\begin{align*}
 	N &= 5000\\
+	\pause
 	M &= 5000\\
+	\pause
 	\alpha &= 0.05\\
 	\end{align*}
 \end{frame}
@@ -365,10 +397,12 @@
 	\item
 	Далее, в таблицах, $\text{ET}_1$ обозначает энергетический 
 	тест с $g_1(x) = \ln(1+x^2)$, а $\text{ET}_2$ обозначает энергетический тест с $g_2(x) = |x|$
+	\pause
 	\item
 	Формула "не работает" для $g_2(x)$.
+	\pause
 	\item
-	Но если по ней посчитать, то AP$=0.05$
+	Но если по ней посчитать, то AP$=0.05$ \quad \textbf{:})
 	\end{itemize}
 	
 \end{frame}
@@ -435,13 +469,13 @@
         \item
         Эмпирические мощности быстро сходятся к асимптотическим для нормального распределения.
     	\end{itemize}
-
+		\pause
         \item \textbf{Мощность тестов зависит от типа отличия:}
         \begin{itemize}
             \item Отличие по сдвигу: WMW наиболее мощный.
             \item Отличие по масштабу: чаще всего ET наиболее мощный.
         \end{itemize}
-        
+        \pause
         \item \textbf{Влияние распределения:}
         \begin{itemize}
             \item В случае распределения Коши эмпирические мощности $\text{ET}_2$ довольно быстро сходятся к асимптотическим.
@@ -457,7 +491,7 @@
             \item Проанализировано влияние типа отличия распределений
         \end{itemize}
     \end{block}
-    
+    \pause
     \begin{block}{Практическая значимость}
         \begin{itemize}
             \item Рекомендации по выбору теста в зависимости от типа альтернативы
