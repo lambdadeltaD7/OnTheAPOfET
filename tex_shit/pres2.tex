@@ -20,7 +20,19 @@
 \usepackage{multirow}
 
 \setbeamertemplate{headline}{}
-\setbeamertemplate{footline}{}
+%\setbeamertemplate{footline}{}
+\setbeamertemplate{footline}{
+	\leavevmode%
+	\hbox{%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm plus1fill,rightskip=.3cm]{author in head/foot}%
+			\usebeamerfont{author in head/foot}\insertsection
+		\end{beamercolorbox}%
+		\begin{beamercolorbox}[wd=.5\paperwidth,ht=2.5ex,dp=1.125ex,leftskip=.3cm,rightskip=.3cm plus1fil]{title in head/foot}%
+			\usebeamerfont{title in head/foot}\hfill\insertframenumber\,/\,\inserttotalframenumber
+	\end{beamercolorbox}}%
+	\vskip0pt%
+}
+
 
 \title[Об асимптотической мощности энергетического критерия]{Исследование асимптотической мощности энергетического критерия для проверки гипотезы о равенстве двух распределений в случае двух близких альтернатив}
 \author{Сивков Вячеслав}
@@ -73,9 +85,6 @@
         \item $F(x)$ - базовое распределение
     \end{itemize}
 \end{frame}
-
-
-\subsection{Известные результаты}
 
 
 \subsection{Цели исследования}
@@ -204,17 +213,41 @@
 
 \section{Результаты}
 
-\subsection{ET Нормальное отличие по масштабу}
-\subsection{ET Коши отличие по сдвигу}
-\subsection{Все Нормальное сдвиг}
-\subsection{Все Коши масштаб}
-\subsection{Нормальное два ET}
+\subsection*{ET Нормальное отличие по масштабу}
 
+\begin{frame}
+табличка
+\end{frame}
+
+
+\subsection*{ET Коши отличие по сдвигу}
+\begin{frame}
+	табличка
+\end{frame}
+
+\subsection*{Все Нормальное сдвиг}
+\begin{frame}
+	график
+\end{frame}
+
+\subsection*{Все Коши масштаб}
+\begin{frame}
+	график
+\end{frame}
+
+\subsection*{Нормальное два ET}
+\begin{frame}
+	табличка
+\end{frame}
+
+\begin{frame}
+	график
+\end{frame}
 
 
 \section{Выводы}
 
-\begin{frame}{Основные результаты}
+\begin{frame}{Выводы}
     \begin{enumerate}
         \item \textbf{Сходимость:} Эмпирические мощности быстро сходятся к асимптотическим для нормального распределения
         
@@ -249,6 +282,7 @@
     \end{block}
 \end{frame}
 
+\section*{Литература}
 \begin{frame}{Литература}
     \begin{thebibliography}{9}
     \bibitem{melas2024}
@@ -273,9 +307,10 @@
     \end{thebibliography}
 \end{frame}
 
+\section*{Fin}
 \begin{frame}
     \centering
-    \Huge{Спасибо за внимание!}
+    \Huge{А}
     
     \vspace{1cm}
     \large{Вопросы?}
