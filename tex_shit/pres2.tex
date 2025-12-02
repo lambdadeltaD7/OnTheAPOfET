@@ -36,9 +36,11 @@
 
 
 \title[Об асимптотической мощности энергетического критерия]{Исследование асимптотической мощности энергетического критерия для проверки гипотезы о равенстве двух распределений в случае двух близких альтернатив}
-\author{Сивков Вячеслав}
-\institute{Санкт-Петербургский государственный университет}
-\date{2025}
+\author{Сивков Вячеслав 23Б04-ММ}
+\institute{Санкт-Петербургский государственный университет\\
+Кафедра статистического моделирования\\[0.03in]
+Научный руководитель — д.ф.-м.н. \textbf{В. Б. Мелас}}
+\date{  Санкт-Петербург\\ 2025г.}
 
 \begin{document}
 
@@ -46,16 +48,16 @@
     \titlepage
 \end{frame}
 
-\begin{frame}{Содержание}
-    \tableofcontents
-\end{frame}
+%\begin{frame}{Содержание}
+%    \tableofcontents
+%\end{frame}
 
 \section{Введение}
 
 \subsection{Постановка задачи}
 
 \begin{frame}{Постановка задачи}
-    \begin{block}{Основная гипотеза}
+    \begin{block}{Задача}
         Проверка гипотезы о равенстве двух распределений:
         \[
         H_0: F_1 = F_2 \quad \text{против} \quad H_1: F_1 \neq F_2
@@ -78,34 +80,26 @@
         При $n = m$:
         \begin{align*}
         F_1(x) &= F(x) \\
-        F_2(x) &= F\left(x(1 + \frac{h_2}{\sqrt{n}}) + \frac{h_1}{\sqrt{n}}\right)
+        F_2(x) &= F\left(x \left(1 + \frac{h_2}{\sqrt{n}} \right) + \frac{h_1}{\sqrt{n}}\right)
         \end{align*}
     \end{block}
     
     \begin{itemize}
-        \item $h_1$ - параметр отличия по сдвигу
+        \item $h_1$ --- параметр отличия по сдвигу
         \pause
-        \item $h_2$ - параметр отличия по масштабу
+        \item $h_2$ --- параметр отличия по масштабу
         \pause
-        \item $F(x)$ - базовое распределение
+        \item $F(x)$ --- базовое распределение
     \end{itemize}
 \end{frame}
 
 
-\subsection{Цели исследования}
-\begin{frame}{Цели исследования}
+\subsection{Цели и задачи исследования}
+\begin{frame}{Цели и задачи исследования}
     \begin{enumerate}
         \item Изучение скорости сходимости эмпирических мощностей энергетического теста к асимптотической
-        \pause
-        \item Сравнение мощностей пяти тестов:
-        \begin{itemize}
-            \item Энергетический тест (ET)
-            \item Тест Андерсона-Дарлинга (AD)
-            \item Тест Колмогорова-Смирнова (KS)
-            \item Тест Крамера-фон Мизеса (CM)
-            \item Тест Вилкоксона-Манна-Уитни (WMW)
-        \end{itemize}
     	\pause
+    	\vspace{0.1in}
     	\item Сравнение мощностей различных версий энергетического теста
     \end{enumerate}
 \end{frame}
@@ -114,13 +108,13 @@
 \begin{frame}{Основные определения}
 	
 	\begin{block}{Отвержение гипотезы}
-		Пусть $c \in \mathbb{R}$. Будем говорить, что тест $T$ с критическим значением $c$ отвергает $H_0$ при реализациях равных $\hat{X}$ и $\hat{Y}$, если $T(\hat{X},\hat{Y}) \geqslant c$.
+		Пусть $t_{crit} \in \mathbb{R}$. Будем говорить, что тест $T$ с критическим значением $t_{crit}$ отвергает $H_0$ при реализациях равных $\hat{X}$ и $\hat{Y}$, если $T(\hat{X},\hat{Y}) \geqslant t_{crit}$.
 	\end{block}
 	
 	\pause
 	
 	\begin{block}{Уровень значимости}
-		Будем говорить, что тест $T$ с критическим значением $c$ имеет уровень значимости $\alpha$,\\ если $P($отвергнуть $H_0 | H_0$ верна$) \leqslant \alpha$.
+		Будем говорить, что тест $T$ с критическим значением $t_{crit}$ имеет уровень значимости $\alpha$,\\ если $P($отвергнуть $H_0 | H_0$ верна$) \leqslant \alpha$.
 	\end{block}
 	
 	\pause
@@ -139,7 +133,7 @@
 \begin{frame}{Энергетический тест (ET)}
     \begin{block}{Статистика}
         \[
-        \Phi_{nm} = \Phi_{AB} - \Phi_A - \Phi_B
+        \boxed{\Phi_{nm} = \Phi_{AB} - \Phi_A - \Phi_B}
         \]
         \begin{align*}
         \Phi_A &= \frac{1}{n^2} \sum_{1 \leq i \leq j \leq n} g(|X_i - X_j|) \\
@@ -149,7 +143,7 @@
     \end{block}
     
     \begin{itemize}
-        \item $g(x)$ - монотонная и непрерывная функция
+        \item $g(x)$ --- монотонная и непрерывная функция
         \pause
         \item Используется статистика $n\Phi_{nn}$
     \end{itemize}
@@ -173,12 +167,11 @@
 \begin{frame}{Обозначения}
 	
 	\begin{align*}
-		J_1 &= \int_{\mathbb{R}^2} g(x-y)f(x)f(y)dxdy = \mathbb{E}[g(\xi - \eta)]\\
+		J_1 &= \mathbb{E}[g(\xi - \eta)]\\
 		\pause
-		J_2 &= \int_{\mathbb{R}^2} g^2(x-y)f(x)f(y)dxdy = \mathbb{E}[g^2(\xi - \eta)] \\
+		J_2 &= \mathbb{E}[g^2(\xi - \eta)] \\
 		\pause
-		J_3 &= \int_{\mathbb{R}^3} g(x-y)g(y-z)f(x)f(y)f(z)dxdydz = \\
-		    &=\mathbb{E}[g(\xi - \eta)g(\eta - \gamma)] \\[0.2in]
+		J_3 &= \mathbb{E}[g(\xi - \eta)g(\eta - \gamma)] \\[0.2in]
 		    \pause
 		J^*_1(h_1) &= \frac{1}{2}h^2_1 \int_{\mathbb{R}^2} g''(x-y)f(x)f(y)dxdy \\
 		\pause
@@ -210,75 +203,14 @@
 		Тогда:\\
 		Асимптотическая мощность теста $n\Phi_{nn}$ с уровнем значимости $\alpha$ равна
 		\[ 
-		1 - F(z_{1-\frac{\alpha}{2}} - \frac{b}{a}) + F(-z_{1-\frac{\alpha}{2}} - \frac{b}{a})
+		1 - F \left(z_{1-\frac{\alpha}{2}} - \frac{b}{a} \right) + F \left(-z_{1-\frac{\alpha}{2}} - \frac{b}{a} \right),
 		\]
 		\pause
-		где $F(t)$ - функция стандартного нормального распределения, a $z_{1-\frac{\alpha}{2}}$ его $1-\frac{\alpha}{2}$ квантиль.
+		где $F(t)$ --- функция стандартного нормального распределения, a $z_{1-\frac{\alpha}{2}}$ его $1-\frac{\alpha}{2}$ квантиль.
 	\end{block}
 \end{frame}
 
 
-\subsection{AD}
-\begin{frame}{Тест Андерсона-Дарлинга (AD)}
-    \begin{block}{Статистика для k выборок}
-        \[
-        A_{kN}^2 = \frac{1}{N} \sum_{i=1}^k \frac{1}{n_i} \sum_{j=1}^{N-1} \frac{(NM_{ij} - jn_i)^2}{j(N-j)}
-        \]
-    \end{block}
-    
-    \begin{itemize}
-        \item $N = n_1 + \ldots + n_k$ - общий объем выборок
-        \item $M_{ij}$ - количество элементов i-й выборки $\leq Z_{(j)}$
-        \item $Z_{(1)}, \ldots, Z_{(N)}$ - вариационный ряд
-    \end{itemize}
-\end{frame}
-
-\subsection{KS}
-\begin{frame}{Тест Колмогорова-Смирнова (KS)}
-    \begin{block}{Статистика}
-        \[
-        KS = \max_{1 \leq i \leq N} |\hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)})|
-        \]
-    \end{block}
-    
-    \begin{itemize}
-        \item $\hat{F}$, $\hat{G}$ - эмпирические функции распределения
-        \item $Z_{(1)}, \ldots, Z_{(N)}$ - объединенный вариационный ряд
-        \item $N = n + m$
-    \end{itemize}
-\end{frame}
-
-
-\subsection{CM}
-\begin{frame}{Тест Крамера-фон Мизеса (CM)}
-    \begin{block}{Статистика}
-        \[
-        CM = \frac{mn}{N^2} \sum_{i=1}^N (\hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)}))^2
-        \]
-    \end{block}
-    
-\end{frame}
-
-
-\subsection{WMW}
-\begin{frame}{Тест Вилкоксона-Манна-Уитни (WMW)}
-    \begin{block}{Статистика}
-        \[
-        U_{nm} = \sum_{i=1}^n \sum_{j=1}^m \chi(X_i, Y_j)
-        \]
-        \[
-        \chi(X_i, Y_j) = 
-        \begin{cases}
-        1, & X_i \geq Y_j \\
-        0, & X_i < Y_j
-        \end{cases}
-        \]
-    \end{block}
-    
-    \begin{itemize}
-        \item Чувствителен к сдвигу распределений
-    \end{itemize}
-\end{frame}
 
 \section{Моделирование}
 
@@ -306,15 +238,6 @@
 	\end{enumerate}
 \end{frame}
 
-\begin{frame}{Параметры}
-	\begin{align*}
-	N &= 5000\\
-	\pause
-	M &= 5000\\
-	\pause
-	\alpha &= 0.05\\
-	\end{align*}
-\end{frame}
 
 \section{Результаты}
 
@@ -400,7 +323,7 @@
 	тест с $g_1(x) = \ln(1+x^2)$, а $\text{ET}_2$ обозначает энергетический тест с $g_2(x) = |x|$
 	\pause
 	\item
-	Формула "не работает" для $g_2(x)$.
+	Формула «не работает» для $g_2(x)$.
 	\pause
 	\item
 	Но если по ней посчитать, то AP$=0.05$ \quad \textbf{:})
@@ -461,9 +384,9 @@
 
 
 
-\section{Заключение}
+\section{Выводы}
 
-\begin{frame}{Заключение}
+\begin{frame}{Выводы}
     \begin{enumerate}
         \item \textbf{Сходимость:}
         \begin{itemize}
@@ -473,7 +396,6 @@
 		\pause
         \item \textbf{Мощность тестов зависит от типа отличия:}
         \begin{itemize}
-            \item Отличие по сдвигу: WMW наиболее мощный.
             \item Отличие по масштабу: чаще всего ET наиболее мощный.
         \end{itemize}
         \pause
@@ -484,7 +406,7 @@
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Заключение}
+\begin{frame}{Выводы}
     \begin{block}{Выполненная работа}
         \begin{itemize}
             \item Проведено сравнение пяти статистических тестов
@@ -493,10 +415,9 @@
         \end{itemize}
     \end{block}
     \pause
-    \begin{block}{Практическая значимость}
+    \begin{block}{Дальнейшая работа}
         \begin{itemize}
-            \item Рекомендации по выбору теста в зависимости от типа альтернативы
-            \item Сравнение различных вариантов энергетического теста
+            \item Исследовать асимптотические мощности для более широкого класса функций $g(x)$
         \end{itemize}
     \end{block}
 \end{frame}
@@ -526,13 +447,73 @@
     \end{thebibliography}
 \end{frame}
 
-\section*{Fin}
+\section*{Fin.}
 \begin{frame}
-    \centering
-    \Huge{А}
-    
-    \vspace{1cm}
-    \large{Вопросы?}
+	\begin{center}
+		Fin.
+	\end{center}
 \end{frame}
+
+\begin{frame}{Тест Андерсона-Дарлинга (AD)}
+	    \begin{block}{Статистика для k выборок}
+		        \[
+		        A_{kN}^2 = \frac{1}{N} \sum_{i=1}^k \frac{1}{n_i} \sum_{j=1}^{N-1} \frac{(NM_{ij} - jn_i)^2}{j(N-j)}
+		      \]
+		    \end{block}
+	    
+	    \begin{itemize}
+		        \item $N = n_1 + \ldots + n_k$ - общий объем выборок
+		        \item $M_{ij}$ - количество элементов i-й выборки $\leq Z_{(j)}$
+		        \item $Z_{(1)}, \ldots, Z_{(N)}$ - вариационный ряд
+		    \end{itemize}
+	    \end{frame}
+
+
+
+\begin{frame}{Тест Колмогорова-Смирнова (KS)}
+	    \begin{block}{Статистика}
+		        \[
+		        KS = \max_{1 \leq i \leq N} |\hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)})|
+		        \]
+		    \end{block}
+	    
+	    \begin{itemize}
+		        \item $\hat{F}$, $\hat{G}$ - эмпирические функции распределения
+		        \item $Z_{(1)}, \ldots, Z_{(N)}$ - объединенный вариационный ряд
+		        \item $N = n + m$
+		    \end{itemize}
+	\end{frame}
+
+
+
+\begin{frame}{Тест Крамера-фон Мизеса (CM)}
+	    \begin{block}{Статистика}
+		        \[
+		        CM = \frac{mn}{N^2} \sum_{i=1}^N (\hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)}))^2
+		        \]
+		    \end{block}
+	    
+	\end{frame}
+
+
+
+\begin{frame}{Тест Вилкоксона-Манна-Уитни (WMW)}
+	    \begin{block}{Статистика}
+		        \[
+		        U_{nm} = \sum_{i=1}^n \sum_{j=1}^m \chi(X_i, Y_j)
+		        \]
+		        \[
+		        \chi(X_i, Y_j) = 
+		        \begin{cases}
+			        1, & X_i \geq Y_j \\
+			        0, & X_i < Y_j
+			        \end{cases}
+		        \]
+		    \end{block}
+	    
+	    \begin{itemize}
+		        \item Чувствителен к сдвигу распределений
+		    \end{itemize}
+	\end{frame}
 
 \end{document}
