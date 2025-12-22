@@ -42,18 +42,19 @@ bottom=2cm
 Рассмотрим задачу проверки гипотезы о равенстве двух
 распределений
 
-\begin{equation}
+\begin{equation*}
 	H_0: F_1 = F_2
-\end{equation}
+\end{equation*}
 
 \noindent против альтернативы
 
-\begin{equation}
+\begin{equation*}
 	H_1: F_1 \neq F_2
-\end{equation}
+\end{equation*}
 
 
 \noindent в случае двух независимых выборок $X = (X_1, \ldots,X_n)$ и $Y = (Y_1, \ldots, Y_m)$ с функциями распределения $F_1$ и $F_2$ соответственно.
+
 
 Один из важных частных случаев этой задачи выглядит следующим образом:
 пусть размеры выборок идентичны и равны $n$, пусть $h_1, h_2 \in \mathbb{R}$, $h_1, h_2 \geqslant 0$, пусть $F(x)$ некая функция распределения. Положим
@@ -79,14 +80,14 @@ bottom=2cm
 \subsection{Энергетический тест (ET) }
 Пусть $X = (X_1, \ldots,X_n)$ и $Y = (Y_1, \ldots, Y_m)$ независимые выборки. Статистика $\Phi_{nm}$ определяется следующим образом~\cite{ET_article}:
 
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 	\Phi_{nm} = \Phi_{AB} - \Phi_{A} -\Phi_{B}, \quad
 	\Phi_{A} = \frac{1}{n^2} \sum_{1 \leq i \leq j \leq n} g(|X_i - X_j|),\\
 	\Phi_{B} = \frac{1}{m^2} \sum_{1 \leq i \leq j \leq n} g(|Y_i - Y_j|), \quad
 	\Phi_{AB} = \frac{1}{nm} \sum_{i=1}^n \sum_{j=1}^m g(|X_i - Y_j|),
 \end{aligned}
-\end{equation}
+\end{equation*}
 где $g(x)$ - непрерывная, монотонно возрастающая функция.\\
 
 
@@ -104,43 +105,43 @@ bottom=2cm
 Пусть $k \in \mathbb{N}$ -- количество выборок. Пусть $n_i$ -- размер $i$-й выборки, $ i \in \overline{1, \ldots, k} $. Пусть $N = n_1 + \ldots + n_k$. Обозначим за $M_{ij}$ количество 
 элементов $i$-й выборки, которые не больше чем $Z_{(j)}$, где $(Z_{(1)}, \ldots, Z_{(N)})$ - вариационный ряд, построенный по всем имеющимся $k$ выборкам. Тогда статистика будет выглядеть следующим образом~\cite{AD_article}:
 
-\begin{equation}
+\begin{equation*}
 	A_{kN}^2 = \frac{1}{N} \sum_{i=1}^k \frac{1}{n_i} \sum_{j=1}^{N-1} \frac{(NM_{ij}-jn_i)^2}{j(N-j)}.
-\end{equation}
+\end{equation*}
 
 
 
 \subsection{Тест Колмогорова--Смирнова (KS)}
 Пусть $X = (X_1, \ldots,X_n)$ и $Y = (Y_1, \ldots, Y_m)$ независимые выборки. Пусть $N = n + m$.
 Пусть $(Z_{(1)}, \ldots, Z_{(N)})$ - вариационный ряд, построенный по выборкам $X$ и $Y$. Обозначим за $\hat{F}$ и $\hat{G}$ эмпирические функции распределения построенные по выборкам $X$ и $Y$. Тогда статистика будет выглядеть так~\cite{KS_CM_article}:
-\begin{equation}
+\begin{equation*}
 	KS = \max_{1\leq i \leq N} | \hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)})  |
-\end{equation}
+\end{equation*}
 
 
 
 \subsection{Тест Крамера-фон Мизеса (CM)}
 Пусть $X = (X_1, \ldots,X_n)$ и $Y = (Y_1, \ldots, Y_m)$ независимые выборки. Пусть $N = n + m$.
 Пусть $(Z_{(1)}, \ldots, Z_{(N)})$ - вариационный ряд, построенный по выборкам $X$ и $Y$. Обозначим за $\hat{F}$ и $\hat{G}$ эмпирические функции распределения построенные по выборкам $X$ и $Y$. Тогда статистика будет выглядеть следующим образом~~\cite{KS_CM_article}:
-\begin{equation}
+\begin{equation*}
 	CM = \frac{mn}{N^2} \sum_{i=1}^{N} (\hat{F}(Z_{(i)}) - \hat{G}(Z_{(i)}))^2
-\end{equation}
+\end{equation*}
 
 
 
 \subsection{Тест Вилкоксона--Манна--Уитни (WMW)}
 Пусть $X = (X_1, \ldots,X_n)$ и $Y = (Y_1, \ldots, Y_m)$ независимые выборки. Статистика будет выглядеть следующим образом~\cite{WMW_article}:
-\begin{equation}
+\begin{equation*}
 	U_{nm} = \sum_{i=1}^n \sum_{j=1}^m \chi(X_i,Y_j),
-\end{equation}
+\end{equation*}
 где
-\begin{equation}
+\begin{equation*}
 	\chi(X_i,Y_j) = 
 	\begin{cases}
 		1, \ X_i \geq Y_j \\
 		0, \ X_i < Y_j
 	\end{cases}
-\end{equation}
+\end{equation*}
 
 
 
