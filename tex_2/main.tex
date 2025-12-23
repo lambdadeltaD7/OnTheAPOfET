@@ -195,23 +195,44 @@ bottom=2cm
 \section{Моделирование}
 О том, как проводилось вычисление эмпирических мощностей с помощью программы на С++.
 
-Выбираем некий тест $T(X,Y)$. Фиксируем некую функцию распределения $F(x)$. Фиксируем $n \in \mathbb{N}$ -- размер выборок. Фиксируем $h_1, h_2 \in \mathbb{R}$, $h_1, h_2 \geqslant 0$ -- параметры отличия по сдвигу и масштабу соответственно. $F_1$ и $F_2$ определяем как было указано в~\eqref{eq:F1} и~\eqref{eq:F2} соответственно. Фиксируем $\alpha \in (0,1)$ -- уровень значимости. Выбираем $N \in \mathbb{N}$ и $M \in \mathbb{N}$.
+Выбираем некий тест $T(X,Y)$. Фиксируем некую функцию распределения $F(x)$. Фиксируем $n \in \mathbb{N}$ -- размер выборок. Фиксируем $h_1, h_2 \in \mathbb{R}$, $h_1, h_2 \geqslant 0$ -- параметры отличия по сдвигу и масштабу соответственно. $F_1$ и $F_2$ определяем как было указано в~\eqref{eq:F1} и~\eqref{eq:F2} соответственно. Фиксируем $\alpha \in (0,1)$ -- уровень значимости. Выбираем $N \in \mathbb{N}$ и $M \in \mathbb{N}$. Далее используем:
 
-Сначала приближённо вычисляем критическое значение $c_{\alpha}$ для выбранного ранее теста так, чтобы он имел уровень значимости $\alpha$ следующим образом:
+\vspace{0.3in}
 
-\begin{enumerate}
-	\item Генерируем выборки $X^{(k)}$ и $Y^{(k)}$ размера $n$, из $F_1$, где $k \in \overline{1,\ldots, M}$.
-	\item Вычисляем $T(X^{(k)}, Y^{(k)})$ для всех $k \in \overline{1,\ldots, M}$.
-	\item Получаем выборку из распределения $T(X,Y)$ размера $M$, по ней строим эмпирическое распределение $\hat{T}(X,Y)$.
-	\item В качестве $c_{\alpha}$ берём $1 - \alpha$ квантиль $\hat{T}(X,Y)$.
-\end{enumerate}
+\begin{algorithm}[H]
+	\caption{Оценка критического значения $c_{\alpha}$}
+	
+	$T_{vals} \leftarrow$ пустой массив длины $M$\;
+	\For{$k \leftarrow 1$ \KwTo $M$}{
+		$X \leftarrow$ выборка($F_1$, $n$)\;
+		$Y \leftarrow$ выборка($F_1$, $n$)\;
+		$T_{vals}[k] \leftarrow T(X, Y)$\;
+	}
+	$\hat{F}_T \leftarrow$ эмпирическое распределение $T_{vals}$\;
+	$c_{\alpha} \leftarrow \hat{F}_T^{-1}(1-\alpha)$\;
+	\Return $c_{\alpha}$\;
+\end{algorithm}
 
-Далее, для вычисления эмпирической мощности делаем следующее:
-\begin{enumerate}
-	\item Генерируем $X^{(i)}, Y^{(i)}$ -- выборки размера $n$ из $F_1$ и $F_2$ соответственно, для $i \in \overline{1,\ldots, N}$.
-	\item Считаем количество отвержений $H_0$ как $cnt =  \#\{ (X^{(i)},Y^{(i)}) \ | \ T(X^{(i)}, Y^{(i)}) \geqslant c_{\alpha}, \ i \in \overline{1,\ldots, N} \}$.
-	\item В качестве эмпирической мощности берём $ \frac{cnt}{N}$.
-\end{enumerate}
+\vspace{0.3in}
+
+\begin{algorithm}[H]
+	\caption{Оценка эмпирической мощности критерия}
+
+	
+	$rejections \leftarrow 0$\;
+	\For{$i \leftarrow 1$ \KwTo $N$}{
+		$X \leftarrow$ выборка($F_1$, $n$)\;
+		$Y \leftarrow$ выборка($F_2$, $n$)\;
+		$T_{val} \leftarrow T(X, Y)$\;
+		\If{$T_{val} \geq c_{\alpha}$}{
+			$rejections \leftarrow rejections + 1$\;
+		}
+	}
+	$\hat{\beta} \leftarrow rejections / N$\;
+	\Return $\hat{\beta}$\;
+\end{algorithm}
+
+
 
 \newpage
 \section{Результаты}

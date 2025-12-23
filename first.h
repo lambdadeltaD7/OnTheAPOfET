@@ -226,6 +226,7 @@ std::pair<std::vector<double>, double> experiment_step(
     double b2 = sqrt(abs(J2_star));
     
     double a = pow( J2 + J1 * J1 - 2 * J3, 0.25);
+    // double a = pow(fabs(J1), 0.5);
     double b = sqrt( b1 * b1 + b2 * b2);
     
     std::vector<double> emp_powers;

@@ -22,18 +22,19 @@ def compute_integrals(f, g, d2_g):
     print("J2 =", integrals["J2"])
     
     t0= time.time()
+    R = 30
     print("computing J3...")
     integrals["J3"] = nquad(
         lambda x,y,z: g(x - y) * g(x - z) * f(x) * f(y) * f(z),
-        ranges=[(-30, +30),
-                (-30, +30),
-                (-30, +30)], opts={"epsabs":1e-3, "epsrel":1e-3})[0]
+        ranges=[(-R, +R),
+                (-R, +R),
+                (-R, +R)], opts={"epsabs":1e-3, "epsrel":1e-3})[0]
     # integrals["J3"] = 0.763368 # for normal
     # integrals["J3"] = 6.881056 # for cauchy
     print("J3 =", integrals["J3"])
     print("elapsed time for J3:", time.time()-t0)
     
-    R = 70
+    
     print(f"R = {R}")
     print()
     print("computing J1_star...")
@@ -60,8 +61,8 @@ def d2_g(x):
     return 2 * (1 - x**2) / (1 + x**2)**2
 
 
-integrals = compute_integrals(stats.norm.pdf, g, d2_g)
-print("integrals for Normal distribution")
+integrals = compute_integrals(lambda x: stats.t.pdf(x,df=7), g, d2_g)
+print("integrals for Student distribution")
 print(integrals)
 
 
