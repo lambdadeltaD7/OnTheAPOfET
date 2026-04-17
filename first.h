@@ -193,6 +193,8 @@ double compute_crit_val_v2(int n, int M, double alpha, T d1,
 }
 
 
+
+
 enum class DistributionType {
     NORMAL = 0,
     CAUCHY = 1
@@ -253,6 +255,7 @@ boost::random::normal_distribution<double> get_normal(int n, double h1, double h
 
 boost::random::cauchy_distribution<double> get_cauchy(int n, double h1, double h2);
 
+
 template <typename T>
 void run_experiment(double h1, std::vector<double> h2_vals,
                     double alpha, int N, int M,
@@ -261,7 +264,6 @@ void run_experiment(double h1, std::vector<double> h2_vals,
                     std::function<double(double*, double*, int)> compute_test,
                     bool compute_AP, boost::random::mt19937& gen)
 {   
-
     std::cout << "N = " << N << "\n"; 
     std::cout << "M = " << M << "\n"; 
     std::cout << "alpha = " << alpha << "\n"; 
@@ -293,8 +295,6 @@ void run_experiment(double h1, std::vector<double> h2_vals,
         std::cout << "\n\n";  
     }
 }
-
-
 
 
 template <typename T>
@@ -337,3 +337,153 @@ void run_experiment(std::vector<double> h1_vals, double h2,
         std::cout << "\n\n";  
     }
 }
+
+
+
+
+template<typename T = double>
+class scaled_student_t_distribution : public boost::random::student_t_distribution<T> {
+private:
+    T h1, h2;
+    int n;
+    T denom;
+    T shift;
+public:
+    scaled_student_t_distribution(T df, T h1_, T h2_, int n_)
+        : boost::random::student_t_distribution<T>(df), h1(h1_), h2(h2_), n(n_) {
+            denom = T(1) + h2 / std::sqrt(static_cast<T>(n));
+            shift = h1 / std::sqrt(static_cast<T>(n));
+        }
+
+    template<typename Engine>
+    T operator()(Engine& eng) {
+        T t = boost::random::student_t_distribution<T>::operator()(eng);
+        return (t - shift) / denom;
+    }
+};
+
+
+
+
+void run_experiment_st(std::vector<double> h1_vals, double h2, 
+                    double alpha, int N, int M, int df,
+                    std::vector<int> sample_sizes,
+                    std::vector<double> integrals,
+                    std::function<double(double*, double*, int)> compute_test,
+                    bool compute_AP, boost::random::mt19937& gen)
+{   
+
+    std::cout << "N = " << N << "\n"; 
+    std::cout << "M = " << M << "\n"; 
+    std::cout << "alpha = " << alpha << "\n"; 
+    std::cout << "h2 = " << h2 << "\n\n"; 
+    auto d1 = boost::random::student_t_distribution<double>(df);
+
+    std::vector<double> crit_vals;
+    std::cout << "computing crit_vals...\n";
+    for(int n : sample_sizes){
+        Timer t1;
+        double cv = compute_crit_val_v2(n, M, alpha, d1, compute_test, gen);
+        std::cout << "n = " << n << "  ||  cv = " <<  cv << " || ";
+        crit_vals.push_back(cv);
+    }
+    std::cout << "\n";
+    
+    for(double h1 : h1_vals){
+        {
+        Timer t1;
+        std::cout << "h1 = " << h1 << "\n";
+        auto [e_pow, a_pow] = experiment_step_st(h1, h2, df,
+            alpha, N, M, sample_sizes, integrals, crit_vals, gen, compute_test);
+        std::cout << "emp_powers = ";
+        print_vector(e_pow);
+        if (compute_AP){
+            std::cout << "asp_power = " << a_pow << "\n";
+        }
+        }
+        std::cout << "\n\n";  
+    }
+}
+
+
+void run_experiment_st(double h1, std::vector<double> h2_vals,
+                    double alpha, int N, int M, int df,
+                    std::vector<int> sample_sizes,
+                    std::vector<double> integrals,
+                    std::function<double(double*, double*, int)> compute_test,
+                    bool compute_AP, boost::random::mt19937& gen)
+{   
+    std::cout << "N = " << N << "\n"; 
+    std::cout << "M = " << M << "\n"; 
+    std::cout << "alpha = " << alpha << "\n"; 
+    std::cout << "h1 = " << h1 << "\n\n"; 
+    auto d1 = boost::random::student_t_distribution<double>(df);
+
+    std::vector<double> crit_vals;
+    std::cout << "computing crit_vals...\n";
+    for(int n : sample_sizes){
+        Timer t1;
+        double cv = compute_crit_val_v2(n, M, alpha, d1, compute_test, gen);
+        std::cout << "n = " << n << "  ||  cv = " <<  cv << " || ";
+        crit_vals.push_back(cv);
+    }
+    std::cout << "\n";
+    
+    for(double h2 : h2_vals){
+        {
+        Timer t1;
+        std::cout << "h2 = " << h2 << "\n";
+        auto [e_pow, a_pow] = experiment_step_st(h1, h2, df,
+            alpha, N, M, sample_sizes, integrals, crit_vals, gen, compute_test);
+        std::cout << "emp_powers = ";
+        print_vector(e_pow);
+        if(compute_AP){
+            std::cout << "asp_power = " << a_pow << "\n";
+        }
+        }
+        std::cout << "\n\n";  
+    }
+}
+
+std::pair<std::vector<double>, double> experiment_step_st(
+                    double h1, double h2, int df, double alpha,
+                    int N, int M, std::vector<int> sample_sizes,
+                    std::vector<double> integrals,
+                    std::vector<double> crit_vals,
+                    boost::random::mt19937& gen,
+                    std::function<double(double*, double*, int)> compute_test)
+{
+
+    auto d1 = boost::random::student_t_distribution<double>(df);
+
+    double J1 = integrals[0];
+    double J2 = integrals[1];
+    double J3 = integrals[2];
+    double J1_star = integrals[3] * h1 * h1;
+    double J2_star = integrals[4] * h2 * h2;
+
+    double b1 = sqrt(abs(J1_star));
+    double b2 = sqrt(abs(J2_star));
+    
+    double a = pow( J2 + J1 * J1 - 2 * J3, 0.25);
+    // double a = pow(fabs(J1), 0.5);
+    double b = sqrt( b1 * b1 + b2 * b2);
+    
+    std::vector<double> emp_powers;
+
+    for (int i=0; i<sample_sizes.size(); ++i){
+        Timer t1;
+        int n = sample_sizes[i];
+        std::cout << "n = " << n << "  ||  ";
+        auto d2_n = scaled_student_t_distribution<double>(df, h1, h2, n);
+        double e_pow = compute_empirical_power(n, N, crit_vals[i], d1, d2_n, compute_test, gen);
+        emp_powers.push_back(e_pow);
+    }
+
+    double a_pow = compute_asymptotic_power(alpha, b, a);
+
+    return {emp_powers, a_pow};
+
+}
+
+
