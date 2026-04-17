@@ -363,8 +363,49 @@ public:
 };
 
 
+template<typename T=double>
+std::pair<std::vector<double>, double> experiment_step_st(
+                    double h1, double h2, int df, double alpha,
+                    int N, int M, std::vector<int> sample_sizes,
+                    std::vector<double> integrals,
+                    std::vector<double> crit_vals,
+                    boost::random::mt19937& gen,
+                    std::function<double(double*, double*, int)> compute_test)
+{
 
+    auto d1 = scaled_student_t_distribution<double>(df, 0, 0, 1);
 
+    double J1 = integrals[0];
+    double J2 = integrals[1];
+    double J3 = integrals[2];
+    double J1_star = integrals[3] * h1 * h1;
+    double J2_star = integrals[4] * h2 * h2;
+
+    double b1 = sqrt(abs(J1_star));
+    double b2 = sqrt(abs(J2_star));
+    
+    double a = pow( J2 + J1 * J1 - 2 * J3, 0.25);
+    // double a = pow(fabs(J1), 0.5);
+    double b = sqrt( b1 * b1 + b2 * b2);
+    
+    std::vector<double> emp_powers;
+
+    for (int i=0; i<sample_sizes.size(); ++i){
+        Timer t1;
+        int n = sample_sizes[i];
+        std::cout << "n = " << n << "  ||  ";
+        auto d2_n = scaled_student_t_distribution<double>(df, h1, h2, n);
+        double e_pow = compute_empirical_power(n, N, crit_vals[i], d1, d2_n, compute_test, gen);
+        emp_powers.push_back(e_pow);
+    }
+
+    double a_pow = compute_asymptotic_power(alpha, b, a);
+
+    return {emp_powers, a_pow};
+
+}
+
+template<typename T=double>
 void run_experiment_st(std::vector<double> h1_vals, double h2, 
                     double alpha, int N, int M, int df,
                     std::vector<int> sample_sizes,
@@ -405,7 +446,7 @@ void run_experiment_st(std::vector<double> h1_vals, double h2,
     }
 }
 
-
+template<typename T=double>
 void run_experiment_st(double h1, std::vector<double> h2_vals,
                     double alpha, int N, int M, int df,
                     std::vector<int> sample_sizes,
@@ -445,45 +486,5 @@ void run_experiment_st(double h1, std::vector<double> h2_vals,
     }
 }
 
-std::pair<std::vector<double>, double> experiment_step_st(
-                    double h1, double h2, int df, double alpha,
-                    int N, int M, std::vector<int> sample_sizes,
-                    std::vector<double> integrals,
-                    std::vector<double> crit_vals,
-                    boost::random::mt19937& gen,
-                    std::function<double(double*, double*, int)> compute_test)
-{
-
-    auto d1 = boost::random::student_t_distribution<double>(df);
-
-    double J1 = integrals[0];
-    double J2 = integrals[1];
-    double J3 = integrals[2];
-    double J1_star = integrals[3] * h1 * h1;
-    double J2_star = integrals[4] * h2 * h2;
-
-    double b1 = sqrt(abs(J1_star));
-    double b2 = sqrt(abs(J2_star));
-    
-    double a = pow( J2 + J1 * J1 - 2 * J3, 0.25);
-    // double a = pow(fabs(J1), 0.5);
-    double b = sqrt( b1 * b1 + b2 * b2);
-    
-    std::vector<double> emp_powers;
-
-    for (int i=0; i<sample_sizes.size(); ++i){
-        Timer t1;
-        int n = sample_sizes[i];
-        std::cout << "n = " << n << "  ||  ";
-        auto d2_n = scaled_student_t_distribution<double>(df, h1, h2, n);
-        double e_pow = compute_empirical_power(n, N, crit_vals[i], d1, d2_n, compute_test, gen);
-        emp_powers.push_back(e_pow);
-    }
-
-    double a_pow = compute_asymptotic_power(alpha, b, a);
-
-    return {emp_powers, a_pow};
-
-}
 
 

@@ -82,6 +82,6 @@ def parse_test_file_simple(filename: str) -> pd.DataFrame:
     return df
 
 
-for fname in os.listdir("./notes/res19/splitted"):
-    df = parse_test_file_simple(f"./notes/res19/splitted/{fname}")
-    df.to_csv(f"./notes/res19/csvs/{fname[:fname.index('.txt')]}.csv")
+for fname in os.listdir("./notes/res21/splitted"):
+    df = parse_test_file_simple(f"./notes/res21/splitted/{fname}")
+    df.to_csv(f"./notes/res21/csvs/{fname[:fname.index('.txt')]}.csv")

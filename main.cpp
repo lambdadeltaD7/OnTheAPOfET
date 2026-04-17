@@ -19,35 +19,75 @@ double g(double x){
 void ex_tmp_st(std::vector<double> h1_vals, double h2, double alpha, int N, int M,
             int df, std::vector<int>sample_sizes, std::vector<double> integrals)
 {
-    std::cout<< "ET_" << "Student" << "\n";
+    std::cout<< "ET_" << "STUDENT" << "\n";
     run_experiment_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals,
          [](double* X, double *Y, int n ){return compute_etest(g, X, Y, n);}, true, gen);
     std::cout << "================================\n";
     std::cout << "================================\n\n";
 
-    // std::cout<< "HT_" << name << "\n";
-    // run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals,
+    // std::cout<< "HT_" << "STUDENT" << "\n";
+    // run_experiment_st(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals,
     // [](double* X, double *Y, int n ){return compute_etest(g2, X, Y, n);}, false, gen);
     // std::cout << "================================\n";
     // std::cout << "================================\n\n";
 
-    // std::cout<< "WMW_" << name << "\n";
-    // run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals, compute_wmw, false, gen);
+    // std::cout<< "WMW_" << "STUDENT" << "\n";
+    // run_experiment_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals, compute_wmw, false, gen);
     // std::cout << "================================\n";
     // std::cout << "================================\n\n";
 
-    // std::cout<< "AD_" << name << "\n";
-    // run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals, compute_ad, false, gen);
+    // std::cout<< "AD_" << "STUDENT" << "\n";
+    // run_experiment_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals, compute_ad, false, gen);
     // std::cout << "================================\n";
     // std::cout << "================================\n\n";
 
-    // std::cout<< "KS_" << name << "\n";
-    // run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals, compute_ks,  false, gen);
+    // std::cout<< "KS_" << "STUDENT"  << "\n";
+    // run_experiment_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals, compute_ks,  false, gen);
     // std::cout << "================================\n";
     // std::cout << "================================\n\n";
 
-    // std::cout<< "CM_" << name << "\n";
-    // run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals, compute_cm,  false, gen);
+    // std::cout<< "CM_" << "STUDENT"  << "\n";
+    // run_experiment_st(h1_vals, h2, alpha, N, M, df,  sample_sizes, integrals, compute_cm,  false, gen);
+    // std::cout << "================================\n";
+    // std::cout << "================================\n\n";
+}
+
+
+
+
+void ex_tmp_st(double h1, std::vector<double> h2_vals,  double alpha, int N, int M, int df,
+            std::vector<int>sample_sizes, std::vector<double> integrals)
+{
+
+    std::cout<< "ET_" << "STUDENT" << "\n";
+    run_experiment_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals,
+         [](double* X, double *Y, int n ){return compute_etest(g, X, Y, n);}, true, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
+
+    // std::cout<< "HT_" << name << "\n";
+    // run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals,
+    // [](double* X, double *Y, int n ){return compute_etest(g2, X, Y, n);}, false, gen);
+    // std::cout << "================================\n";
+    // std::cout << "================================\n\n";
+
+    // std::cout<< "WMW_" << "STUDENT" << "\n";
+    // run_experiment_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals, compute_wmw, false, gen);
+    // std::cout << "================================\n";
+    // std::cout << "================================\n\n";
+
+    // std::cout<< "AD_" << "STUDENT" << "\n";
+    // run_experiment_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals, compute_ad, false, gen);
+    // std::cout << "================================\n";
+    // std::cout << "================================\n\n";
+
+    // std::cout<< "KS_" << "STUDENT" << "\n";
+    // run_experiment_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals, compute_ks,  false, gen);
+    // std::cout << "================================\n";
+    // std::cout << "================================\n\n";
+
+    // std::cout<< "CM_" << "STUDENT" << "\n";
+    // run_experiment_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals, compute_cm,  false, gen);
     // std::cout << "================================\n";
     // std::cout << "================================\n\n";
 }
@@ -187,17 +227,59 @@ void ex5(){
     std::vector<double>  h1_vals{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     double h2 = 0.0;
     double alpha = 0.05;
-    std::vector<int> sample_sizes{100, 400, 900};
+
+    std::vector<int> sample_sizes{100, 400, 900, 1600, 2000, 3000};
     int N = 5000;
     int M = 5000;
+
+    // std::vector<int> sample_sizes{100, 200};
+    // int N = 1000;
+    // int M = 1000;
+
+
     int df = 10;
-    std::vector<double> integrals = read_integrals(DistributionType::CAUCHY);
+    std::vector<double> integrals = read_numbers_from_file(
+        "/home/lolikion/Документы/study/нир5сем/code/ex/precomputed_integrals_cpp/student_10.txt");
     ex_tmp_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals);
 }
 
+// student with h1=0
+void ex6(){
+    std::vector<double>  h2_vals{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    double h1 = 0.0;
+    double alpha = 0.05;
+
+    std::vector<int> sample_sizes{100, 400, 900, 1600, 2000, 3000};
+    int N = 5000;
+    int M = 5000;
+
+    // std::vector<int> sample_sizes{100, 200};
+    // int N = 1000;
+    // int M = 1000;
+
+    int df = 10;
+    std::vector<double> integrals = read_numbers_from_file(
+        "/home/lolikion/Документы/study/нир5сем/code/ex/precomputed_integrals_cpp/student_10.txt");
+    ex_tmp_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals);
+}
+
+
+/*
+TODO
+1) merge run_exp(h1,h2_vals) and run_exp(h1_vals, h2) into  run_exp(h1_vals, h2_vals)
+2) compute everything on t-dist
+3) make transition to tex more convinient (не прописывать руками внутри файлов res_k)
+*/
+
+
 int main() {
-    ex1();
+
+    // ex1();
     // ex2();
+
     // ex3();
     // ex4();
+
+    ex5();
+    ex6();
 }

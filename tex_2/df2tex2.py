@@ -3,14 +3,16 @@ import pandas as pd
 import glob
 
 def parse_csv_files():
-    csv_files = glob.glob('./notes/res19/csvs/*.csv')
+    csv_files = glob.glob('./notes/res21/csvs/*.csv')
     
     # Группируем файлы по распределению и фиксированному параметру
     groups = {
         'NORMAL_h1': [],
         'NORMAL_h2': [],
         'CAUCHY_h1': [],
-        'CAUCHY_h2': []
+        'CAUCHY_h2': [],
+        'STUDENT_h1': [],
+        'STUDENT_h2': [],
     }
     
     # Анализируем имена файлов и читаем данные
@@ -94,7 +96,7 @@ def main():
     for group_name, group_data in groups.items():
         if group_data:  # Если есть данные для этой группы
             latex_table = create_latex_table_for_group(group_data, group_name)
-            with open(f"./notes/res19/tables/{group_name.lower()}_table.tex", 'w', encoding='utf-8') as f:
+            with open(f"./notes/res21/tables/{group_name.lower()}_table.tex", 'w', encoding='utf-8') as f:
                 f.write(latex_table)
             # print(latex_table)
 
