@@ -407,66 +407,66 @@ bottom=2cm
 \end{table}
 
 
-\newpage
-
-\begin{example}
-	Пусть $F(x)$ --- функция распределения Стьюдента (df=10).\\
-	Пусть $\alpha = 0.05$, $N=5000$, $M=5000$.
-	С помощью численного интегрирования были получены значения интегралов~\eqref{eq:ints}:
-	\begin{equation*}
-		J_1 = 0.892830, \hspace{0.1in} J_2 = 1.403212, \hspace{0.1in}  J_3=0.946027, \hspace{0.1in}
-		\frac{J^{*}_1(h_1)}{{h_1}^2} = 0.209104,   \hspace{0.1in} \frac{J^{*}_2(h_2)}{{h_2}^2} = 0.145047.
-	\end{equation*}
-	В таблицах  \ref{tbl:ap_student10_h1_diff} и \ref{tbl:ap_student10_h2_diff} всё аналогично предыдущему случаю.
-\end{example}
-
-
-% CHANGE IT
-\begin{table}[!h]
-	\centering
-	\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ($h_2=0$)}
-	\centering
-	\hspace*{-1.0cm}\begin{tabular}
-		[t]{lrrrrrrrrrr}
-		\toprule
-		& h1=1.0 & h1=2.0 & h1=3.0 & h1=4.0 & h1=5.0 & h1=6.0 & h1=7.0 & h1=8.0 & h1=9.0 & h1=10.0\\
-		\midrule
-		EP (n=100) & 0.094 & 0.229 & 0.454 & 0.708 & 0.888 & 0.966 & 0.992 & 0.999 & 1 & 1\\
-		EP (n=400) & 0.092 & 0.225 & 0.469 & 0.707 & 0.871 & 0.962 & 0.992 & 0.999 & 1 & 1\\
-		EP (n=900) & 0.095 & 0.227 & 0.459 & 0.692 & 0.884 & 0.968 & 0.991 & 0.999 & 1 & 1\\
-		EP (n=1600) & 0.102 & 0.244 & 0.474 & 0.729 & 0.889 & 0.972 & 0.994 & 0.999 & 1 & 1\\
-		EP (n=2000) & 0.094 & 0.238 & 0.464 & 0.702 & 0.896 & 0.972 & 0.994 & 0.999 & 1 & 1\\
-		
-		EP (n=3000) & 0.094 & 0.236 & 0.478 & 0.704 & 0.877 & 0.971 & 0.992 & 0.998 & 1 & 1\\
-		\addlinespace
-		AP & 0.094 & 0.233 & 0.453 & 0.690 & 0.866 & 0.957 & 0.990 & 0.998 & 1 & 1\\
-		\bottomrule
-	\end{tabular}
-	\label{tbl:ap_student10_h1_diff}
-\end{table}
+%\newpage
+%
+%\begin{example}
+%	Пусть $F(x)$ --- функция распределения Стьюдента (df=10).\\
+%	Пусть $\alpha = 0.05$, $N=5000$, $M=5000$.
+%	С помощью численного интегрирования были получены значения интегралов~\eqref{eq:ints}:
+%	\begin{equation*}
+%		J_1 = 0.892830, \hspace{0.1in} J_2 = 1.403212, \hspace{0.1in}  J_3=0.946027, \hspace{0.1in}
+%		\frac{J^{*}_1(h_1)}{{h_1}^2} = 0.209104,   \hspace{0.1in} \frac{J^{*}_2(h_2)}{{h_2}^2} = 0.145047.
+%	\end{equation*}
+%	В таблицах  \ref{tbl:ap_student10_h1_diff} и \ref{tbl:ap_student10_h2_diff} всё аналогично предыдущему случаю.
+%\end{example}
 
 
-\begin{table}[!h]
-	\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ($h_1=0$)}
-	\centering
-	\hspace*{-1.0cm}\begin{tabular}
-		{lrrrrrrrrrr}
-		\toprule
-		& h2=1.0 & h2=2.0 & h2=3.0 & h2=4.0 & h2=5.0 & h2=6.0 & h2=7.0 & h2=8.0 & h2=9.0 & h2=10.0\\
-		\midrule
-		EP (n=100) & 0.071 & 0.103 & 0.199 & 0.353 & 0.504 & 0.670 & 0.796 & 0.884 & 0.937 & 0.968\\
-		EP (n=400) & 0.061 & 0.129 & 0.266 & 0.490 & 0.689 & 0.857 & 0.952 & 0.985 & 0.997 & 0.999\\
-		EP (n=900) & 0.055 & 0.117 & 0.272 & 0.496 & 0.737 & 0.897 & 0.971 & 0.993 & 0.999 & 1.000\\
-		EP (n=1600) & 0.065 & 0.143 & 0.311 & 0.552 & 0.792 & 0.932 & 0.985 & 0.998 & 1.000 & 1.000\\
-		EP (n=2000) & 0.059 & 0.132 & 0.296 & 0.533 & 0.776 & 0.923 & 0.984 & 0.997 & 1.000 & 1.000\\
-		
-		EP (n=3000) & 0.060 & 0.131 & 0.305 & 0.548 & 0.812 & 0.937 & 0.988 & 0.998 & 1.000 & 1.000\\
-		\addlinespace
-		AP & 0.080 & 0.176 & 0.335 & 0.534 & 0.724 & 0.866 & 0.947 & 0.983 & 0.996 & 0.999\\
-		\bottomrule
-	\end{tabular}
-	\label{tbl:ap_student10_h2_diff}
-\end{table}
+%
+%\begin{table}[!h]
+%	\centering
+%	\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ($h_2=0$)}
+%	\centering
+%	\hspace*{-1.0cm}\begin{tabular}
+%		[t]{lrrrrrrrrrr}
+%		\toprule
+%		& h1=1.0 & h1=2.0 & h1=3.0 & h1=4.0 & h1=5.0 & h1=6.0 & h1=7.0 & h1=8.0 & h1=9.0 & h1=10.0\\
+%		\midrule
+%		EP (n=100) & 0.094 & 0.229 & 0.454 & 0.708 & 0.888 & 0.966 & 0.992 & 0.999 & 1 & 1\\
+%		EP (n=400) & 0.092 & 0.225 & 0.469 & 0.707 & 0.871 & 0.962 & 0.992 & 0.999 & 1 & 1\\
+%		EP (n=900) & 0.095 & 0.227 & 0.459 & 0.692 & 0.884 & 0.968 & 0.991 & 0.999 & 1 & 1\\
+%		EP (n=1600) & 0.102 & 0.244 & 0.474 & 0.729 & 0.889 & 0.972 & 0.994 & 0.999 & 1 & 1\\
+%		EP (n=2000) & 0.094 & 0.238 & 0.464 & 0.702 & 0.896 & 0.972 & 0.994 & 0.999 & 1 & 1\\
+%		
+%		EP (n=3000) & 0.094 & 0.236 & 0.478 & 0.704 & 0.877 & 0.971 & 0.992 & 0.998 & 1 & 1\\
+%		\addlinespace
+%		AP & 0.094 & 0.233 & 0.453 & 0.690 & 0.866 & 0.957 & 0.990 & 0.998 & 1 & 1\\
+%		\bottomrule
+%	\end{tabular}
+%	\label{tbl:ap_student10_h1_diff}
+%\end{table}
+%
+%
+%\begin{table}[!h]
+%	\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ($h_1=0$)}
+%	\centering
+%	\hspace*{-1.0cm}\begin{tabular}
+%		{lrrrrrrrrrr}
+%		\toprule
+%		& h2=1.0 & h2=2.0 & h2=3.0 & h2=4.0 & h2=5.0 & h2=6.0 & h2=7.0 & h2=8.0 & h2=9.0 & h2=10.0\\
+%		\midrule
+%		EP (n=100) & 0.071 & 0.103 & 0.199 & 0.353 & 0.504 & 0.670 & 0.796 & 0.884 & 0.937 & 0.968\\
+%		EP (n=400) & 0.061 & 0.129 & 0.266 & 0.490 & 0.689 & 0.857 & 0.952 & 0.985 & 0.997 & 0.999\\
+%		EP (n=900) & 0.055 & 0.117 & 0.272 & 0.496 & 0.737 & 0.897 & 0.971 & 0.993 & 0.999 & 1.000\\
+%		EP (n=1600) & 0.065 & 0.143 & 0.311 & 0.552 & 0.792 & 0.932 & 0.985 & 0.998 & 1.000 & 1.000\\
+%		EP (n=2000) & 0.059 & 0.132 & 0.296 & 0.533 & 0.776 & 0.923 & 0.984 & 0.997 & 1.000 & 1.000\\
+%		
+%		EP (n=3000) & 0.060 & 0.131 & 0.305 & 0.548 & 0.812 & 0.937 & 0.988 & 0.998 & 1.000 & 1.000\\
+%		\addlinespace
+%		AP & 0.080 & 0.176 & 0.335 & 0.534 & 0.724 & 0.866 & 0.947 & 0.983 & 0.996 & 0.999\\
+%		\bottomrule
+%	\end{tabular}
+%	\label{tbl:ap_student10_h2_diff}
+%\end{table}
 
 
 \newpage
@@ -476,8 +476,8 @@ bottom=2cm
 	Пусть $\alpha = 0.05$, $N=5000$, $M=5000$.
 	С помощью численного интегрирования были получены значения интегралов~\eqref{eq:ints}:
 	\begin{equation*}
-		J_1 = 0.892830, \hspace{0.1in} J_2 = 1.403212, \hspace{0.1in}  J_3=0.946027, \hspace{0.1in}
-		\frac{J^{*}_1(h_1)}{{h_1}^2} = 0.209104,   \hspace{0.1in} \frac{J^{*}_2(h_2)}{{h_2}^2} = 0.145047.
+		J_1 = 0.849873, \hspace{0.1in} J_2 = 1.269836, \hspace{0.1in}  J_3=0.847838, \hspace{0.1in}
+		\frac{J^{*}_1(h_1)}{{h_1}^2} = 0.217983,   \hspace{0.1in} \frac{J^{*}_2(h_2)}{{h_2}^2} = 0.146457.
 	\end{equation*}
 	В таблицах  \ref{tbl:ap_student20_h1_diff} и \ref{tbl:ap_student20_h2_diff} всё аналогично предыдущему случаю.
 \end{example}
@@ -712,87 +712,87 @@ bottom=2cm
 \end{table}
 
 
-% Table for STUDENT_h2
-\begin{table}[!h]
-	\centering
-	\caption{Распределение Стьюдента (df=10, h2=0)}
-	\begin{tabular}{l c c c c c c} 
-		\toprule
-		test & sample size & h1=1.0 & h1=2.0 & h1=3.0 & h1=4.0 & h1=5.0 \\ 
-		\midrule
-		\multirow{3}{*}{AD} 
-		& n=100 & 0.1 & 0.25 & 0.48 & 0.73 & 0.89 \\ 
-		& n=400 & 0.1 & 0.26 & 0.49 & 0.75 & 0.9 \\ 
-		& n=900 & 0.09 & 0.23 & 0.45 & 0.7 & 0.88 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{CM} 
-		& n=100 & 0.09 & 0.23 & 0.45 & 0.69 & 0.88 \\ 
-		& n=400 & 0.09 & 0.25 & 0.48 & 0.73 & 0.9 \\ 
-		& n=900 & 0.11 & 0.28 & 0.5 & 0.74 & 0.9 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{ET} 
-		& n=100 & 0.09 & 0.24 & 0.47 & 0.7 & 0.89 \\ 
-		& n=400 & 0.09 & 0.23 & 0.46 & 0.7 & 0.88 \\ 
-		& n=900 & 0.09 & 0.23 & 0.45 & 0.7 & 0.88 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{KS} 
-		& n=100 & 0.1 & 0.21 & 0.43 & 0.67 & 0.84 \\ 
-		& n=400 & 0.08 & 0.19 & 0.39 & 0.62 & 0.82 \\ 
-		& n=900 & 0.09 & 0.23 & 0.42 & 0.66 & 0.83 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{WMW} 
-		& n=100 & 0.16 & 0.36 & 0.61 & 0.82 & 0.94 \\ 
-		& n=400 & 0.16 & 0.37 & 0.63 & 0.83 & 0.95 \\ 
-		& n=900 & 0.16 & 0.36 & 0.6 & 0.83 & 0.94 \\ 
-		\bottomrule
-	\end{tabular}
-	\label{tbl:student10_pow_vs_h1}
-\end{table}
-
-% Table for STUDENT_h1
-\begin{table}[!h]
-	\centering
-	\caption{Распределение Стьюдента (df=10, h1=0)}
-	\begin{tabular}{l c c c c c c} 
-		\toprule
-		test & sample size & h2=1.0 & h2=3.0 & h2=5.0 & h2=7.0 & h2=9.0 \\ 
-		\midrule
-		\multirow{3}{*}{AD} 
-		& n=100 & 0.07 & 0.19 & 0.51 & 0.82 & 0.96 \\ 
-		& n=400 & 0.06 & 0.22 & 0.64 & 0.94 & 1 \\ 
-		& n=900 & 0.07 & 0.26 & 0.73 & 0.97 & 1 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{CM} 
-		& n=100 & 0.06 & 0.12 & 0.3 & 0.59 & 0.82 \\ 
-		& n=400 & 0.05 & 0.14 & 0.4 & 0.76 & 0.95 \\ 
-		& n=900 & 0.06 & 0.14 & 0.45 & 0.84 & 0.98 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{ET} 
-		& n=100 & 0.06 & 0.19 & 0.47 & 0.78 & 0.93 \\ 
-		& n=400 & 0.07 & 0.27 & 0.71 & 0.96 & 1 \\ 
-		& n=900 & 0.06 & 0.29 & 0.77 & 0.98 & 1 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{KS} 
-		& n=100 & 0.06 & 0.12 & 0.28 & 0.49 & 0.72 \\ 
-		& n=400 & 0.05 & 0.12 & 0.35 & 0.64 & 0.89 \\ 
-		& n=900 & 0.07 & 0.16 & 0.41 & 0.75 & 0.95 \\ 
-		\addlinespace
-		\addlinespace
-		\multirow{3}{*}{WMW} 
-		& n=100 & 0.06 & 0.05 & 0.06 & 0.06 & 0.06 \\ 
-		& n=400 & 0.06 & 0.05 & 0.05 & 0.06 & 0.06 \\ 
-		& n=900 & 0.05 & 0.05 & 0.06 & 0.05 & 0.05 \\ 
-		\bottomrule
-	\end{tabular}
-	\label{tbl:student10_pow_vs_h2}
-\end{table}
+%% Table for STUDENT_h2
+%\begin{table}[!h]
+%	\centering
+%	\caption{Распределение Стьюдента (df=10, h2=0)}
+%	\begin{tabular}{l c c c c c c} 
+%		\toprule
+%		test & sample size & h1=1.0 & h1=2.0 & h1=3.0 & h1=4.0 & h1=5.0 \\ 
+%		\midrule
+%		\multirow{3}{*}{AD} 
+%		& n=100 & 0.1 & 0.25 & 0.48 & 0.73 & 0.89 \\ 
+%		& n=400 & 0.1 & 0.26 & 0.49 & 0.75 & 0.9 \\ 
+%		& n=900 & 0.09 & 0.23 & 0.45 & 0.7 & 0.88 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{CM} 
+%		& n=100 & 0.09 & 0.23 & 0.45 & 0.69 & 0.88 \\ 
+%		& n=400 & 0.09 & 0.25 & 0.48 & 0.73 & 0.9 \\ 
+%		& n=900 & 0.11 & 0.28 & 0.5 & 0.74 & 0.9 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{ET} 
+%		& n=100 & 0.09 & 0.24 & 0.47 & 0.7 & 0.89 \\ 
+%		& n=400 & 0.09 & 0.23 & 0.46 & 0.7 & 0.88 \\ 
+%		& n=900 & 0.09 & 0.23 & 0.45 & 0.7 & 0.88 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{KS} 
+%		& n=100 & 0.1 & 0.21 & 0.43 & 0.67 & 0.84 \\ 
+%		& n=400 & 0.08 & 0.19 & 0.39 & 0.62 & 0.82 \\ 
+%		& n=900 & 0.09 & 0.23 & 0.42 & 0.66 & 0.83 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{WMW} 
+%		& n=100 & 0.16 & 0.36 & 0.61 & 0.82 & 0.94 \\ 
+%		& n=400 & 0.16 & 0.37 & 0.63 & 0.83 & 0.95 \\ 
+%		& n=900 & 0.16 & 0.36 & 0.6 & 0.83 & 0.94 \\ 
+%		\bottomrule
+%	\end{tabular}
+%	\label{tbl:student10_pow_vs_h1}
+%\end{table}
+%
+%% Table for STUDENT_h1
+%\begin{table}[!h]
+%	\centering
+%	\caption{Распределение Стьюдента (df=10, h1=0)}
+%	\begin{tabular}{l c c c c c c} 
+%		\toprule
+%		test & sample size & h2=1.0 & h2=3.0 & h2=5.0 & h2=7.0 & h2=9.0 \\ 
+%		\midrule
+%		\multirow{3}{*}{AD} 
+%		& n=100 & 0.07 & 0.19 & 0.51 & 0.82 & 0.96 \\ 
+%		& n=400 & 0.06 & 0.22 & 0.64 & 0.94 & 1 \\ 
+%		& n=900 & 0.07 & 0.26 & 0.73 & 0.97 & 1 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{CM} 
+%		& n=100 & 0.06 & 0.12 & 0.3 & 0.59 & 0.82 \\ 
+%		& n=400 & 0.05 & 0.14 & 0.4 & 0.76 & 0.95 \\ 
+%		& n=900 & 0.06 & 0.14 & 0.45 & 0.84 & 0.98 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{ET} 
+%		& n=100 & 0.06 & 0.19 & 0.47 & 0.78 & 0.93 \\ 
+%		& n=400 & 0.07 & 0.27 & 0.71 & 0.96 & 1 \\ 
+%		& n=900 & 0.06 & 0.29 & 0.77 & 0.98 & 1 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{KS} 
+%		& n=100 & 0.06 & 0.12 & 0.28 & 0.49 & 0.72 \\ 
+%		& n=400 & 0.05 & 0.12 & 0.35 & 0.64 & 0.89 \\ 
+%		& n=900 & 0.07 & 0.16 & 0.41 & 0.75 & 0.95 \\ 
+%		\addlinespace
+%		\addlinespace
+%		\multirow{3}{*}{WMW} 
+%		& n=100 & 0.06 & 0.05 & 0.06 & 0.06 & 0.06 \\ 
+%		& n=400 & 0.06 & 0.05 & 0.05 & 0.06 & 0.06 \\ 
+%		& n=900 & 0.05 & 0.05 & 0.06 & 0.05 & 0.05 \\ 
+%		\bottomrule
+%	\end{tabular}
+%	\label{tbl:student10_pow_vs_h2}
+%\end{table}
 
 
 % Table for STUDENT_h2
@@ -922,19 +922,19 @@ bottom=2cm
 
 
 
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics/STUDENT10_h1_n_EP (n_500).png}
-	\caption{Зависимость эмпирических мощностей от различия по сдвигу, в случае распределений Стьюдента (df=10) с одинаковым масштабом.}
-	\label{fig:student10_pow_vs_h1}
-\end{figure}
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics/STUDENT10_h2_n_EP (n_500).png}
-	\caption{Зависимость эмпирических мощностей от различия по сдвигу, в случае распределений Стьюдента (df=10) с одинаковым масштабом.}
-	\label{fig:student10_pow_vs_h2}
-\end{figure}
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics/STUDENT10_h1_n_EP (n_500).png}
+%	\caption{Зависимость эмпирических мощностей от различия по сдвигу, в случае распределений Стьюдента (df=10) с одинаковым масштабом.}
+%	\label{fig:student10_pow_vs_h1}
+%\end{figure}
+%
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics/STUDENT10_h2_n_EP (n_500).png}
+%	\caption{Зависимость эмпирических мощностей от различия по сдвигу, в случае распределений Стьюдента (df=10) с одинаковым масштабом.}
+%	\label{fig:student10_pow_vs_h2}
+%\end{figure}
 
 
 
@@ -953,40 +953,37 @@ bottom=2cm
 \end{figure}
 
 
-
-
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics2/NORMAL_h1_h2_2.5.png}
-	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных нормальных распределений, отличающихся масштабом.}
-	\label{fig:normal_pow_vs_n_h2_diff}
-\end{figure}
-
-
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics2/NORMAL_h2_h1_5.0.png}
-	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных нормальных распределений, отличающихся сдвигом.}
-	\label{fig:normal_pow_vs_n_h1_diff}
-\end{figure}
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics2/CAUCHY_h1_h2_7.0.png}
-	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных распределений Коши, отличающихся масштабом.}
-	\label{fig:cauchy_pow_vs_n_h2_diff}
-\end{figure}
-
-
-
-\begin{figure}[!h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{pics2/CAUCHY_h2_h1_6.0.png}
-	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных распределений Коши, отличающихся сдвигом.}
-	\label{fig:cauchy_pow_vs_n_h1_diff}
-\end{figure}
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics2/NORMAL_h1_h2_2.5.png}
+%	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных нормальных распределений, отличающихся масштабом.}
+%	\label{fig:normal_pow_vs_n_h2_diff}
+%\end{figure}
+%
+%
+%
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics2/NORMAL_h2_h1_5.0.png}
+%	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных нормальных распределений, отличающихся сдвигом.}
+%	\label{fig:normal_pow_vs_n_h1_diff}
+%\end{figure}
+%
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics2/CAUCHY_h1_h2_7.0.png}
+%	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных распределений Коши, отличающихся масштабом.}
+%	\label{fig:cauchy_pow_vs_n_h2_diff}
+%\end{figure}
+%
+%
+%
+%\begin{figure}[!h]
+%	\centering
+%	\includegraphics[width=0.8\textwidth]{pics2/CAUCHY_h2_h1_6.0.png}
+%	\caption{Зависимость эмпирических мощностей от размера выборки в случае стандартных распределений Коши, отличающихся сдвигом.}
+%	\label{fig:cauchy_pow_vs_n_h1_diff}
+%\end{figure}
 
 
 \clearpage
@@ -1089,6 +1086,54 @@ bottom=2cm
 \end{table}
 
 
+% Table for STUDENT_h2
+\begin{table}[!h]
+	\centering
+	\caption{Распределение Стьюдента (df=20, h2=0)}
+	\begin{tabular}{l c c c c c c c c c c} 
+		\toprule
+		test & sample size & h1=1.0 & h1=1.5 & h1=2.0 & h1=2.5 & h1=3.0 & h1=3.5 & h1=4.0 & h1=4.5 & h1=5.0 \\ 
+		\midrule
+		\multirow{3}{*}{$\text{ET}_1$} 
+		& n=100 & 0.11 & 0.17 & 0.27 & 0.38 & 0.5 & 0.63 & 0.76 & 0.84 & 0.91 \\ 
+		& n=400 & 0.11 & 0.17 & 0.27 & 0.39 & 0.52 & 0.64 & 0.75 & 0.84 & 0.91 \\ 
+		& n=900 & 0.11 & 0.16 & 0.25 & 0.37 & 0.51 & 0.62 & 0.73 & 0.84 & 0.9 \\ 
+		\addlinespace
+		\addlinespace
+		\multirow{3}{*}{$\text{ET}_2$} 
+		& n=100 & 0.09 & 0.17 & 0.25 & 0.36 & 0.51 & 0.62 & 0.74 & 0.85 & 0.91 \\ 
+		& n=400 & 0.11 & 0.17 & 0.25 & 0.38 & 0.5 & 0.64 & 0.75 & 0.85 & 0.92 \\ 
+		& n=900 & 0.1 & 0.17 & 0.27 & 0.38 & 0.52 & 0.64 & 0.75 & 0.85 & 0.92 \\ 
+		\bottomrule
+	\end{tabular}
+	\label{tbl:et_comp_student20_h1}
+\end{table}
+
+
+% Table for STUDENT_h1
+\begin{table}[!h]
+	\centering
+	\caption{Распределение Стьюдента (df=20, h1=0)}
+	\begin{tabular}{l c c c c c c c c c c} 
+		\toprule
+		test & sample size & h2=1.0 & h2=1.5 & h2=2.0 & h2=2.5 & h2=3.0 & h2=3.5 & h2=4.0 & h2=4.5 & h2=5.0 \\ 
+		\midrule
+		\multirow{3}{*}{$\text{ET}_1$} 
+		& n=100 & 0.06 & 0.08 & 0.1 & 0.14 & 0.19 & 0.26 & 0.32 & 0.42 & 0.48 \\ 
+		& n=400 & 0.07 & 0.09 & 0.13 & 0.19 & 0.26 & 0.37 & 0.48 & 0.62 & 0.72 \\ 
+		& n=900 & 0.07 & 0.1 & 0.14 & 0.21 & 0.33 & 0.43 & 0.57 & 0.69 & 0.78 \\ 
+		\addlinespace
+		\addlinespace
+		\multirow{3}{*}{$\text{ET}_2$} 
+		& n=100 & 0.05 & 0.06 & 0.08 & 0.09 & 0.13 & 0.17 & 0.23 & 0.3 & 0.36 \\ 
+		& n=400 & 0.06 & 0.08 & 0.1 & 0.15 & 0.2 & 0.28 & 0.37 & 0.48 & 0.6 \\ 
+		& n=900 & 0.06 & 0.06 & 0.1 & 0.14 & 0.21 & 0.29 & 0.42 & 0.53 & 0.67 \\ 
+		\bottomrule
+	\end{tabular}
+	\label{tbl:et_comp_student20_h2}
+\end{table}
+
+
 
 
 \newpage
@@ -1113,7 +1158,6 @@ bottom=2cm
 \item
 В случае стандартного распределения Коши $\text{ET}_2$ оказывается мощнее при $h_1 \leqslant 4$ и при $h_2 \leqslant 4$. А при $h_1 \geqslant 5$ и $h_2 \geqslant 5$ наиболее мощным показал себя $\text{ET}_1$.
 \end{itemize}
-\newpage
 
 \section{Заключение}
 В данной работе c помощью статистического моделирования была изучена скорость сходимости эмпирических мощностей энергетического теста к асимптотической с ростом размера выборки.
