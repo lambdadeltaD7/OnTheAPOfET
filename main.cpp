@@ -14,6 +14,9 @@ double g(double x){
     return log(1 + x*x);
 }
 
+double g2(double x){
+    return abs(x);
+}
 
 
 void ex_tmp_st(std::vector<double> h1_vals, double h2, double alpha, int N, int M,
@@ -21,15 +24,15 @@ void ex_tmp_st(std::vector<double> h1_vals, double h2, double alpha, int N, int 
 {
     std::cout<< "ET_" << "STUDENT" << "\n";
     run_experiment_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals,
-         [](double* X, double *Y, int n ){return compute_etest(g, X, Y, n);}, true, gen);
+         [](double* X, double *Y, int n ){return compute_etest(g, X, Y, n);}, false, gen);
     std::cout << "================================\n";
     std::cout << "================================\n\n";
 
-    // std::cout<< "HT_" << "STUDENT" << "\n";
-    // run_experiment_st(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals,
-    // [](double* X, double *Y, int n ){return compute_etest(g2, X, Y, n);}, false, gen);
-    // std::cout << "================================\n";
-    // std::cout << "================================\n\n";
+    std::cout<< "HT_" << "STUDENT" << "\n";
+    run_experiment_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals,
+    [](double* X, double *Y, int n ){return compute_etest(g2, X, Y, n);}, false, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
 
     // std::cout<< "WMW_" << "STUDENT" << "\n";
     // run_experiment_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals, compute_wmw, false, gen);
@@ -65,11 +68,11 @@ void ex_tmp_st(double h1, std::vector<double> h2_vals,  double alpha, int N, int
     std::cout << "================================\n";
     std::cout << "================================\n\n";
 
-    // std::cout<< "HT_" << name << "\n";
-    // run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals,
-    // [](double* X, double *Y, int n ){return compute_etest(g2, X, Y, n);}, false, gen);
-    // std::cout << "================================\n";
-    // std::cout << "================================\n\n";
+    std::cout<< "HT_" << "STUDENT" << "\n";
+    run_experiment_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals,
+    [](double* X, double *Y, int n ){return compute_etest(g2, X, Y, n);}, false, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
 
     // std::cout<< "WMW_" << "STUDENT" << "\n";
     // run_experiment_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals, compute_wmw, false, gen);
@@ -224,11 +227,11 @@ void ex4(){
 
 // student with h2=0
 void ex5(){
-    std::vector<double>  h1_vals{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<double>  h1_vals{1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0};
     double h2 = 0.0;
     double alpha = 0.05;
 
-    std::vector<int> sample_sizes{100, 400, 900, 1600, 2000, 3000};
+    std::vector<int> sample_sizes{100, 400, 900};
     int N = 5000;
     int M = 5000;
 
@@ -237,19 +240,19 @@ void ex5(){
     // int M = 1000;
 
 
-    int df = 10;
+    int df = 20;
     std::vector<double> integrals = read_numbers_from_file(
-        "/home/lolikion/Документы/study/нир5сем/code/ex/precomputed_integrals_cpp/student_10.txt");
+        "/home/lolikion/Документы/study/нир5сем/code/ex/precomputed_integrals_cpp/student_20.txt");
     ex_tmp_st(h1_vals, h2, alpha, N, M, df, sample_sizes, integrals);
 }
 
 // student with h1=0
 void ex6(){
-    std::vector<double>  h2_vals{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<double>  h2_vals{1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0};
     double h1 = 0.0;
     double alpha = 0.05;
 
-    std::vector<int> sample_sizes{100, 400, 900, 1600, 2000, 3000};
+    std::vector<int> sample_sizes{100, 400, 900};
     int N = 5000;
     int M = 5000;
 
@@ -257,9 +260,9 @@ void ex6(){
     // int N = 1000;
     // int M = 1000;
 
-    int df = 10;
+    int df = 20;
     std::vector<double> integrals = read_numbers_from_file(
-        "/home/lolikion/Документы/study/нир5сем/code/ex/precomputed_integrals_cpp/student_10.txt");
+        "/home/lolikion/Документы/study/нир5сем/code/ex/precomputed_integrals_cpp/student_20.txt");
     ex_tmp_st(h1, h2_vals, alpha, N, M, df, sample_sizes, integrals);
 }
 
@@ -267,8 +270,7 @@ void ex6(){
 /*
 TODO
 1) merge run_exp(h1,h2_vals) and run_exp(h1_vals, h2) into  run_exp(h1_vals, h2_vals)
-2) compute everything on t-dist
-3) make transition to tex more convinient (не прописывать руками внутри файлов res_k)
+2) make transition to tex more convinient (не прописывать руками внутри файлов res_k)
 */
 
 
