@@ -1,14 +1,29 @@
-\documentclass[12pt]{beamer}
+%\documentclass[12pt]{beamer}
+%\documentclass[ucs, handout]{beamer}
 
+\documentclass[handout]{beamer}
 
-\mode<presentation>
-{
-	\usetheme{Warsaw}
-	% or ...
-	
-	\setbeamercovered{transparent}
-	% or whatever (possibly just delete it)
+\usetheme[numbers,totalnumbers,compress, nologo]{Statmod}
+\usefonttheme[onlymath]{serif}
+\setbeamertemplate{navigation symbols}{}
+
+\mode<handout> {
+	\usepackage{pgfpages}
+	\setbeameroption{show notes}
+	\pgfpagesuselayout{2 on 1}[a4paper, border shrink=5mm]
+	\setbeamercolor{note page}{bg=white}
+	\setbeamercolor{note title}{bg=gray!10}
+	\setbeamercolor{note date}{fg=gray!10}
 }
+
+%\mode<presentation>
+%{
+%	\usetheme{Warsaw}
+%	% or ...
+%	
+%	\setbeamercovered{transparent}
+%	% or whatever (possibly just delete it)
+%}
 
 
 \usepackage[utf8]{inputenc}
@@ -18,8 +33,10 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{multirow}
+\usepackage{tikz}
+\usepackage{ragged2e}
 
-
+\setbeameroption{show notes}
 \setbeamertemplate{headline}{}
 %\setbeamertemplate{footline}{}
 \setbeamertemplate{footline}{
@@ -46,15 +63,15 @@
 
 \begin{frame}
     \titlepage
+    \note{text1}
 \end{frame}
 
 %\begin{frame}{Содержание}
 %    \tableofcontents
 %\end{frame}
 
-\section{Введение}
 
-\subsection{Постановка задачи}
+
 
 \begin{frame}{Постановка задачи}
     \begin{block}{Задача}
@@ -73,6 +90,7 @@
             \item Выборки независимые
         \end{itemize}
     \end{block}
+    \note{text2}
 \end{frame}
 
 \begin{frame}{Альтернативная гипотеза}
@@ -91,10 +109,11 @@
         \pause
         \item $F(x)$ --- базовое распределение
     \end{itemize}
+    \note{text3}
 \end{frame}
 
 
-\subsection{Цели исследования}
+
 \begin{frame}{Цели исследования}
     \begin{enumerate}
     	\item
@@ -108,12 +127,13 @@
         \item
         исследовать влияние выбора функции $g(x)$ в энергетическом тесте на его мощность.
     \end{enumerate}
+    \note{text4}
 \end{frame}
 
 
-\section{Методы проверки гипотез}
 
-\subsection{ET}
+
+
 \begin{frame}{Энергетический тест (ET)}
     \begin{block}{Статистика}
         \[
@@ -131,11 +151,8 @@
         \pause
         \item Используется статистика $n\Phi_{nn}$
     \end{itemize}
+    \note{text5}
 \end{frame}
-
-\subsection{О вычислении асимптотической мощности энергетического теста}
-
-
 
 
 
@@ -152,14 +169,14 @@
 		\pause
 		где $F(t)$ --- функция стандартного нормального распределения, a $z_{1-\frac{\alpha}{2}}$ его $1-\frac{\alpha}{2}$ квантиль.
 	\end{block}
+	\note{text6}
 \end{frame}
 
 
 
 
-\section{Результаты}
 
-\subsection*{ET Нормальное отличие по масштабу}
+
 \begin{frame}{Стандартное нормальное распределение\\ Отличие по сдвигу}
 \begin{table}[!h]
 	\centering
@@ -181,19 +198,22 @@
 	\end{tabular}
 	\label{tbl:ap_normal_h1_diff}
 \end{table}
+\note{text7}
 \end{frame}
 
 \begin{frame}{Стандартное нормальное распределение \\ Отличие по сдвигу}
 	\includegraphics[width=0.9\textwidth]{pics/NORMAL_h2_n_EP (n_500).png}
+	\note{text8}
 \end{frame}
 
 \begin{frame}{Стандартное нормальное распределение \\ Отличие по масштабу}
 	\includegraphics[width=0.9\textwidth]{pics/NORMAL_h1_n_EP (n_500).png}
+	\note{text9}
 \end{frame}
 
 
 
-\subsection*{ET Коши отличие по масштабу}
+
 \begin{frame}{Стандартное распределение Коши \\ Отличие по масштабу}
 	\begin{table}[!h]
 		\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ET ($h_1=0$, $g(x)=\ln(1+x^2)$)}
@@ -215,17 +235,20 @@
 		\end{tabular}
 		\label{tbl:ap_cauchy_h2_diff}
 	\end{table}
+	\note{text10}
 \end{frame}
 
 \begin{frame}{Стандартное распределение Коши \\ Отличие по сдвигу}
 	\includegraphics[width=0.9\textwidth]{pics/CAUCHY_h2_n_EP (n_500).png}
+	\note{text11}
 \end{frame}
 
 \begin{frame}{Стандартное распределение Коши \\ Отличие по масштабу}
 	\includegraphics[width=0.9\textwidth]{pics/CAUCHY_h1_n_EP (n_500).png}
+	\note{text12}
 \end{frame}
 
-\subsection*{ET Стьюдент отличие по сдвигу}
+
 \begin{frame}{Распределение Стьюдента ($\text{df}=20$)\\ Отличие по сдвигу}
 \begin{table}[!h]
 	\caption{Значения эмпирической (EP) и асимптотической (AP) мощности ($h_2=0$, $g(x)=\ln(1+x^2)$))}
@@ -248,15 +271,18 @@
 	\end{tabular}
 	\label{tbl:ap_student20_h1_diff}
 \end{table}
+\note{text13}
 \end{frame}
 
 
 \begin{frame}{ Распределение Стьюдента \\ Отличие по сдвигу}
 	\includegraphics[width=0.9\textwidth]{pics/STUDENT20_h2_n_EP (n_500).png}
+	\note{text14}
 \end{frame}
 
 \begin{frame}{ Распределение Стьюдента \\ Отличие по масштабу}
 	\includegraphics[width=0.9\textwidth]{pics/STUDENT20_h1_n_EP (n_500).png}
+	\note{text15}
 \end{frame}
 
 
@@ -276,7 +302,7 @@
 	\item
 	Но, если по ней посчитать, то AP$=0.05$
 	\end{itemize}
-	
+	\note{text16}
 \end{frame}
 
 
@@ -304,12 +330,14 @@
 		\end{tabular}
 		\label{tbl:et_comp_normal_h2}
 	\end{table}
+	\note{text17}
 \end{frame}
 
 \begin{frame}{А почему?}
 	$$
 	\int_{\mathbb{R}} \frac{ |x|^2 }{1+x^2} \ dx = ...
 	$$
+	\note{text18}
 \end{frame}
 
 \begin{frame}{Два варианта ET}
@@ -336,11 +364,12 @@
 		\end{tabular}
 		\label{tbl:et_comp_cauchy_h1}
 	\end{table}
+	\note{text19}
 \end{frame}
 
 
 
-\section{Выводы}
+
 
 \begin{frame}{Выводы}
     \begin{enumerate}
@@ -361,6 +390,7 @@
             \item В случае распределения Коши эмпирические мощности $\text{ET}_2$ хорошо приближаются асимптотическими, хотя приведенная теорема этого не гарантирует.
         \end{itemize}
     \end{enumerate}
+    \note{text20}
 \end{frame}
 
 \begin{frame}{Выводы}
@@ -377,9 +407,10 @@
             \item Исследовать асимптотические мощности для более широкого класса функций $g(x)$
         \end{itemize}
     \end{block}
+    \note{text21}
 \end{frame}
 
-\section*{Литература}
+
 \begin{frame}{Литература}
     \begin{thebibliography}{9}
     \bibitem{melas2024}
@@ -402,16 +433,18 @@
     \textit{Kolmogorov-Smirnov and Cramér-von Mises Type Two-Sample Tests with Various Weight Functions}.
     Communications in Statistics - Simulation and Computation, 2001.
     \end{thebibliography}
+    \note{text22}
 \end{frame}
 
-\section*{Fin.}
+
 \begin{frame}
 	\begin{center}
 		Fin.
 	\end{center}
+	\note{text23}
 \end{frame}
 
-\section*{Appendix}
+
 
 \begin{frame}{Обозначения}
 	\begin{itemize}
