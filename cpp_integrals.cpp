@@ -13,6 +13,8 @@ double d2_g(double x){
 
 
 int main(){
+    // Жестко бахаем Монте-Карло с -O3 -march-native
+
     int N = 1e+8;
     std::mt19937 gen(1339);
 

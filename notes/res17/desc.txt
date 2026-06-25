@@ -1,4 +1,0 @@
-seed =  68
-recomputing tables 5-8 
-1) n*T(x,y) was fixed
-3) new crit_val

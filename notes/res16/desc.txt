@@ -1,5 +1,0 @@
-recomputing tables 1-4 for ET 
-1) n*T(x,y) was fixed
-2) add random seed
-3) new crit_val
-seed=117

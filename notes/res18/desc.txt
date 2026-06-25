@@ -1,2 +1,0 @@
-recomputing tables 9-12
-seed = 1331

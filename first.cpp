@@ -125,6 +125,26 @@ double compute_etest(double (*g)(double), double *X, double *Y, int sample_size)
     return sample_size * (phi_ab - phi_a - phi_b) / (sample_size * sample_size);
 }
 
+double compute_etest2(double (*g)(double), double *X, double *Y, int sample_size){
+    
+    double phi_a = 0, phi_b = 0, phi_ab = 0;
+
+    //#pragma omp parallel for reduction(+:phi_a, phi_b, phi_ab)
+    for(int i=0; i<sample_size; ++i){
+        for(int j=0; j<=i; ++j){
+            phi_ab += g(X[i] - Y[j]);
+        }
+        for(int j=i+1; j<sample_size; ++j){
+            phi_a += g(X[i] - X[j]);
+            phi_b += g(Y[i] - Y[j]);
+            phi_ab += g(X[i] - Y[j]);
+        }
+
+    }
+
+    return sample_size * (phi_ab - phi_a - phi_b) / (sample_size * sample_size);
+}
+
 double compute_ks(double *X, double *Y, int sample_size){
     std::vector<double> ordered_X;
     std::vector<double> ordered_Y;
@@ -186,6 +206,7 @@ double compute_cm(double *X, double *Y, int sample_size){
 double compute_asymptotic_power(double alpha, double b, double a){
     boost::math::normal_distribution<> dist(0, 1);
     double z = boost::math::quantile(dist, 1 - alpha / 2);
+    printf("z = %f\n", z);
     return 1 - boost::math::cdf(dist, z - b / a) + boost::math::cdf(dist, -z - b / a);
 }
 

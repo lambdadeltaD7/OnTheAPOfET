@@ -44,6 +44,8 @@ double compute_edf(std::vector<double>& ordered_sample, double t);
 double compute_cm(double *X, double *Y, int sample_size);
 
 double compute_etest(double (*g)(double), double *X, double *Y, int sample_size);
+double compute_etest2(double (*g)(double), double *X, double *Y, int sample_size);
+
 
 double compute_wmw(double *X, double *Y, int sample_size);
 
@@ -231,6 +233,10 @@ std::pair<std::vector<double>, double> experiment_step(
     // double a = pow(fabs(J1), 0.5);
     double b = sqrt( b1 * b1 + b2 * b2);
     
+    printf("a = %f  ||  b = %f\n", a, b);
+    printf("b1 = %f  ||  b2 = %f\n", b1, b2);
+    
+
     std::vector<double> emp_powers;
 
     for (int i=0; i<sample_sizes.size(); ++i){

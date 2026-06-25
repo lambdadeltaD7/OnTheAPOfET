@@ -100,11 +100,11 @@ template <typename T>
 void ex_tmp(std::vector<double> h1_vals, double h2, double alpha, int N, int M,
             std::vector<int>sample_sizes, std::vector<double> integrals, T get_dist, const char name[])
 {
-    // std::cout<< "ET_" << name << "\n";
-    // run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals,
-    //      [](double* X, double *Y, int n ){return compute_etest(g, X, Y, n);}, true, gen);
-    // std::cout << "================================\n";
-    // std::cout << "================================\n\n";
+    std::cout<< "ET_" << name << "\n";
+    run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals,
+         [](double* X, double *Y, int n ){return compute_etest(g, X, Y, n);}, true, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
 
     // std::cout<< "HT_" << name << "\n";
     // run_experiment(h1_vals, h2, alpha, N, M, sample_sizes, get_dist, integrals,
@@ -151,25 +151,25 @@ void ex_tmp(double h1, std::vector<double> h2_vals,  double alpha, int N, int M,
     // std::cout << "================================\n";
     // std::cout << "================================\n\n";
 
-    // std::cout<< "WMW_" << name << "\n";
-    // run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_wmw, false, gen);
-    // std::cout << "================================\n";
-    // std::cout << "================================\n\n";
+    std::cout<< "WMW_" << name << "\n";
+    run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_wmw, false, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
 
-    // std::cout<< "AD_" << name << "\n";
-    // run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_ad, false, gen);
-    // std::cout << "================================\n";
-    // std::cout << "================================\n\n";
+    std::cout<< "AD_" << name << "\n";
+    run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_ad, false, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
 
-    // std::cout<< "KS_" << name << "\n";
-    // run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_ks,  false, gen);
-    // std::cout << "================================\n";
-    // std::cout << "================================\n\n";
+    std::cout<< "KS_" << name << "\n";
+    run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_ks,  false, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
 
-    // std::cout<< "CM_" << name << "\n";
-    // run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_cm,  false, gen);
-    // std::cout << "================================\n";
-    // std::cout << "================================\n\n";
+    std::cout<< "CM_" << name << "\n";
+    run_experiment(h1, h2_vals, alpha, N, M, sample_sizes, get_dist, integrals, compute_cm,  false, gen);
+    std::cout << "================================\n";
+    std::cout << "================================\n\n";
 }
 
 
@@ -214,7 +214,8 @@ void ex3(){
 
 // cauchy with h1=0
 void ex4(){
-    std::vector<double>  h2_vals{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    // std::vector<double>  h2_vals{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    std::vector<double>  h2_vals{0, 0.1};
     double h1 = 0.0;
     double alpha = 0.05;
     std::vector<int> sample_sizes{100, 400, 900};
@@ -274,14 +275,15 @@ TODO
 */
 
 
+
 int main() {
 
     // ex1();
-    // ex2();
+    //ex2();
 
     // ex3();
-    // ex4();
+    //ex4();
 
-    ex5();
-    ex6();
+    // ex5();
+    // ex6();
 }
